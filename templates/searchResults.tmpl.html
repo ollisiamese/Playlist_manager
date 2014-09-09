@@ -1,0 +1,82 @@
+<div data-bind="module:'spotifySearcher'" class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h3 class="text-warning">Search Results:&nbsp;<span data-bind="if:positiveResults">(<span data-bind="text:totalFound"></span>)</span></h3>
+<span data-bind="ifnot:searchStatus">
+  <img src="img/ajax-loader.gif" alt="loading..."/>
+</span>
+
+</div>
+
+<div data-bind="if:searchStatus" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div data-bind="if:positiveResults">
+<table id="searchResultsTable" class="container">
+ <thead class="text-info bold">
+  <tr>
+  <td>&nbsp;</td>
+  <td >
+  <span class="hidden-xs hidden-sm">Track Name:</span>
+  <span class="visible-xs visible-sm">Track:</span>
+  </td>
+  <td class="hidden-xs hidden-sm">
+  <span class="hidden-xs hidden-sm">Artist:</span>
+  </td>
+  <td class="hidden-xs hidden-sm">
+  <span class="hidden-xs hidden-sm">Album:</span>
+  </td>
+  <td class="hidden-xs hidden-sm">
+  <span class="hidden-xs hidden-sm">Duration:</span>
+  </td>
+  <td>
+  &nbsp;
+  </td>
+  </tr>
+ </thead>
+ 
+ <tbody data-bind="foreach:foundTracks">
+ <tr >
+ 
+   <td>
+   <img data-bind="attr:{src:image}" alt=''/>
+   </td>
+   <td>
+   <p data-bind="text:trackName" class="bolded"></p>
+   <span class="visible-xs visible-sm"><p data-bind="text:artist"></p></span>
+   </td>
+    <td class="hidden-xs hidden-sm">
+	<span data-bind="text:artist"></span>
+	</td>
+    <td class="hidden-xs hidden-sm">
+	<span data-bind="text:album"></span>
+	</td>
+    <td class="hidden-xs hidden-sm">
+	<span data-bind="text:duration"></span>
+	</td>
+    <td class="addBtn">
+	<button class='btn btn-default'>Add to Playlist</button>
+	</td>
+	
+ </tr>
+ </tbody>
+</table>
+
+<div class="pull-right">
+ <span data-bind="if:displayPrev">
+ <button class="btn btn-success" data-bind="click:displayPrevTracks"><span class="glyphicon glyphicon-chevron-left"></span>Previous Page </button>&nbsp; 
+ </span>
+
+
+ <span data-bind="if:displayMore">
+ <button class="btn btn-success" data-bind="click:displayMoreTracks">More Results <span class="glyphicon glyphicon-chevron-right"></span></button>&nbsp; 
+ </span>
+ 
+ 
+ 
+ </div>
+ 
+ 
+</div>
+
+<div data-bind="text:searchMsg" class="text-warning"></div>
+
+</div>
+</div>

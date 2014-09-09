@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playlist Manager</title>
+
+    <!-- Bootstrap -->
+    <!--<link href="vendor/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">-->
+	<link href="vendor/bootstrap-3.2.0-dist/css/bootstrap-darkly.min.css" rel="stylesheet">
+    <link href="vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet">
+	<link href="css/playlist-styles.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="container-fluid">
+  <div id="mainContainer">
+  <nav class="navbar navbar-default" role="navigation">
+   <div class="container-fluid">
+    <div class="navbar-header">
+	  <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" data-bind="value:searchInput" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" id="btn1" data-bind="click:search" class="btn btn-default">Go</button>
+      </form>
+	</div>
+   </div>
+  
+  </nav>
+  <div class="container">
+  <div data-bind="template:'searchResults'">
+  
+  
+  </div>
+  
+  <div data-bind="template:{name:'playlists'}"></div>
+    <h1>we don't celebrate sundays</h1>
+     <h1>Horns And Halos</h1>
+  
+  
+  
+  </div>
+  </div>
+ </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <!-- <script src="vendor/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>-->
+	<script data-main="js/appStarter" src="vendor/require/require.js"></script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+#searchResultsTable img{
+ width:32px;
+ height:32px
+}
+#searchResultsTable td {
+ padding-top:4px;
+ padding-bottom:4px;
+}
+
+.bold {
+ font-weight:700
+ }
+
+@media (max-width:320px){/*iPhone4*/
+ #searchResultsTable img{
+ width:32px;
+ height:32px
+}
+.bolded {
+font-weight:bold;
+font-size:larger
+}
+ }
+ 
+ 
+ @media  (max-width: 767px) { /*XS*/
+ 
+ #searchResultsTable img{
+ width:64px;
+ height:64px
+}
+ .bolded {
+font-weight:bold;
+font-size:larger
+} 
+ }
+ 
+ @media  (min-width: 768px) {/*SM*/
+ #searchResultsTable img{
+ width:64px;
+ height:64px
+}
+.bolded {
+font-weight:bold;
+font-size:larger
+}
+
+ 
+ }
+ 
+ @media  (min-width: 992px) {/*MD*/
+ #searchResultsTable img{
+ width:32px;
+ height:32px
+}
+  .bolded {
+font-weight:500;
+font-size:100%;
+}
+ }
+ 
+ @media  (min-width: 1200px) {/*LG*/
+
+  
+ }
