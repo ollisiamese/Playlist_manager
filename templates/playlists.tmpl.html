@@ -1,6 +1,9 @@
 <div data-bind="module:'playlists'" class="row" id="playlists-panel">
+
+<!----------------------------------------PANEL WITH PLAYLISTS ------------------------>
 <div class="panel panel-success" >
 <div class="panel-heading" id="playlistsPanel">
+<a name="topPlaylists"></a>
 <h3 class="text-success">Playlists:&nbsp;
 <span class="badge" data-bind="text:totalCount"></span> &nbsp;
 <span class="btn btn-sm btn-success" data-bind="click:createNewList">Create</span>
@@ -20,6 +23,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
  <div data-bind="if:areLists">
   
+   <!--------------------INDIVIDUAL PLAYLIST ---------------------------------------------->
   <ul data-bind="foreach:allPlaylists" class="playUl list-unstyled" id="parentList">
     <li class="oneList col-xs-12 col-sm-12" >
 	<div  class="panel panel-warning listContainer" data-bind="click:$parent.makeActive, event:{focus:$parent.makeActive}">
@@ -39,10 +43,18 @@
 	
 	 
 	 <div class="panel-body">
-	 <iframe src="https://embed.spotify.com/?uri=spotify:trackset:PREFEREDTITLE:3pOqxMamc9sLXHUV4ll0Hu,2GoBwSF9xk6aSt6jGpCxvk,5C6TZz4KFOxtzMkkdQx6MI"
-	 frameborder="0" allowtransparency="true"></iframe>
+	 
 	  <div data-bind="if:tracks" class="containmentContainer" >
-	  <button data-bind="">Generate playlist</button>
+	  
+	  
+	  <div data-bind="if:iframeSrc" class="spBtn">
+	    <iframe data-bind="attr:{src:iframeSrc}"
+	 frameborder="0" allowtransparency="true"></iframe>
+	  
+	  </div>
+	  
+	  
+	  
 	  <ul data-bind="foreach:tracks" class="list-unstyled sortable" class="tracksList">
 	    <li  class="song" data-bind="attr:{id:'s_'+uri}">
 		
@@ -83,7 +95,7 @@
 	 <div class="panel-footer">
 	 <div><span>Total length:
 	 </span>&nbsp;
-	 <span data-bind="text:length">
+	 <span data-bind="text:length()">
 	 </span>
 	 </div>
 	 
@@ -92,7 +104,7 @@
 	 
 	 <span class="pull-left"><span>Tracks:
 	 </span>&nbsp;
-	 <span data-bind="text:tracks().length" >
+	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-bind="text:tracks().length" >
 	 </span>
 	 </span>
 	 
@@ -107,7 +119,9 @@
 	 </div>
 	 </div>
 	</li>
-  </ul>
+  </ul> <!------------------------end of individual playlist -------------------------->
+  
+   <a href="#topPlaylists" class="toTop pull-right">To Top of Playlists<span class="glyphicon glyphicon-arrow-up"></span></a>
  </div>
 
  
@@ -121,7 +135,7 @@
 </div>
 
 
-</div>
+</div> <!-- end of panel -->
 
 
 
@@ -132,7 +146,18 @@
 
 
 <!--- MODALS-->
-
+<div class="modal fade" id="addTrackModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">     
+      <div class="modal-body">
+        <p>Added <br/>
+		   <strong> <span data-bind="with:trackToAdd">&quot;<span data-bind="text:trackName"></span>&quot;</span></strong><br/>
+ 		   to <span data-bind="with:selectedList"><span data-bind="text:name"> </span></span></p>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -238,7 +263,40 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade" id="trackLimitExceeded">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p data-bind="with:selectedList"> Playlist <strong><span data-bind="text:name"></span></strong><br/>
+		has reached the limit of 100 tracks. 
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK!</button>
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
+<div class="modal fade" id="duplicateTrack">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p> You are trying to add a track<br/>
+		    that is already on <br/>
+			  this list. 
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">OK!</button>
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </div>

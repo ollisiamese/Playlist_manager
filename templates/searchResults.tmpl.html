@@ -1,9 +1,12 @@
 <div data-bind="module:'spotifySearcher'" class="row">
 
+<!---------------------------------------- PANEL WITH SEARCH RESULTS ------------------------------------>
 <div class="panel panel-info" >
 <div class="panel-heading" id="searchPanel" >
 <h3 class="text-info">Search Results:&nbsp;
 <span data-bind="if:positiveResults"><span class="badge" data-bind="text:totalFound"></span>
+
+
       <a class="pull-right collapseLink" id="searchCollapse" data-bind="click:function(){plusMinusCollapse('searchCollapse')}" data-toggle="collapse" data-target="#search" >
                
 				<span class="glyphicon glyphicon-minus-sign"></span>
@@ -19,30 +22,30 @@
 
 <div class="panel-body">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<span data-bind="ifnot:searchStatus">
-  <img src="img/ajax-loader.gif" alt="loading..."/>
+<span data-bind="ifnot:searchStatus" >
+  <img src="img/ajax-loader.gif" class='searchGif' alt="loading..."/>
 </span>
 
 </div>
 
 <div data-bind="if:searchStatus" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div data-bind="if:positiveResults">
-
+<div class="row">
 <table id="searchResultsTable" class="col-md-12">
  <thead class="text-info bold">
   <tr>
-  <td>&nbsp;</td>
-  <td >
+  <td class="padded">&nbsp;</td>
+  <td class="padded">
   <span class="hidden-xs hidden-sm"><a href="#" class="filterLink " data-bind="click:function(){setFilter('trackName');return false;}">Track Name:</a></span>
   <span class="visible-xs visible-sm">Track:</span>
   </td>
-  <td class="hidden-xs hidden-sm">
+  <td class="hidden-xs hidden-sm padded">
   <span class="hidden-xs hidden-sm"><a href="#" class="filterLink" data-bind="click:function(){setFilter('artist');return false;}">Artist:</a></span>
   </td>
-  <td class="hidden-xs hidden-sm">
+  <td class="hidden-xs hidden-sm padded">
   <span class="hidden-xs hidden-sm"><a href="#" class="filterLink" data-bind="click:function(){setFilter('album');return false;}">Album:</a></span>
   </td>
-  <td class="hidden-xs hidden-sm">
+  <td class="hidden-xs hidden-sm padded">
   <span class="hidden-xs hidden-sm"><a href="#" class="filterLink" data-bind="click:function(){setFilter('duration');return false;}">Duration:</a></span>
   </td>
   <td>
@@ -54,23 +57,23 @@
  <tbody data-bind="foreach:trackSorter" >
  <tr data-bind="click:$parent.setSelectedTrack">
  
-   <td class="imgTd ">
+   <td class="imgTd padded">
    <img data-bind="attr:{src:image}" alt=''/>
    </td>
-   <td class="">
+   <td class="padded">
    <p data-bind="text:trackName" class="bolded"></p>
    <span class="visible-xs visible-sm"><p data-bind="text:artist"></p></span>
    </td>
-    <td class="hidden-xs hidden-sm ">
+    <td class="hidden-xs hidden-sm padded">
 	<span data-bind="text:artist"></span>
 	</td>
-    <td class="hidden-xs hidden-sm ">
+    <td class="hidden-xs hidden-sm padded">
 	<span data-bind="text:album"></span>
 	</td>
-    <td class="hidden-xs hidden-sm ">
+    <td class="hidden-xs hidden-sm padded">
 	<span data-bind="text:duration"></span>
 	</td>
-    <td class="addBtn ">
+    <td class="addBtn">
 	<div data-bind="module:'playlists'">
 	   <div class="btn-group" data-bind="if:allPlaylists">
 	     
@@ -97,7 +100,8 @@
  </tr>
  </tbody>
 </table>
-
+</div>
+          <!--Prev and Next page controls --> 
 <div>
  <span data-bind="if:displayPrev">
  <button class="btn btn-success pull-left" data-bind="click:displayPrevTracks"><span class="glyphicon glyphicon-chevron-left"></span>Previous Page </button>&nbsp; 
@@ -108,7 +112,7 @@
  <button class="btn btn-success pull-right" data-bind="click:displayMoreTracks">More Results <span class="glyphicon glyphicon-chevron-right"></span></button>&nbsp; 
  </span>
 
- </div>
+ </div> <!--end of controls -->
 
 
  
@@ -118,7 +122,7 @@
 
 </div>
 </div>
-</div> <!-- -->
-</div>
+</div> 
+</div>  <!-- end of panel --->
 
 </div>

@@ -31,15 +31,10 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 	var vm=new viewModel();
 	ko.applyBindings(vm);
 	
-	var list=ko.observableArray();
-	/*var arr1=new Array('Track1','Track2','Track3','Track4','Track5');
-	list.push(new playlist('List1',arr1,'20min'));
-	var arr2=new Array('Tracky1','Tracky2','Tracky3','Tracky4','Tracky5');
-	list.push(new playlist('List2',arr2,'30min'));
-	*/
-	//console.log(list());
-	//storageHandler.updateRecords(list());
 	
+	//pre-populate 2 playlists with data 
+	
+	var list=ko.observableArray();
 	
 	var arr1=new Array(
 	                   {
@@ -117,43 +112,10 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 					   
 					   );			   
 	
-	list.push(new playlist('List1',arr1,'20min'));
-	list.push(new playlist('List2',arr2,'30min'));
-	//console.log(list());
-	storageHandler.updateRecords(list());
+	list.push(new playlist('List1',arr1));
+	list.push(new playlist('List2',arr2));
 	
-	/*
-	var arr1=new Array(
-	                   {
-					   album:"Thank You for the Demon",
-					   artist: "Mustasch",
-					   duration: "6:41",
-					   image: "https://i.scdn.co/image/f397b6f71c591f09af27886aa40ee47de7e84621",
-					   popularity: 47,
-					   uri:"spotify:track:3pOqxMamc9sLXHUV4ll0Hu"
-					   
-					   },
-					   {
-					   
-					   },
-					   {
-					   
-					   }
-					   
-					   
-					   
-					   );
-	*/
-			 
-	
-	
-	
-	
-     
-		 
-	 
-	
-    
+	storageHandler.updateRecords(list()); //save to localStorage
 	
 	
 });

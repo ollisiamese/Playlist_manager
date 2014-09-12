@@ -24,351 +24,441 @@ var filterSelection=ko.observable('trackName');
 
 
 filterSelection.subscribe(function(){
- $('.filterLink').each(function(){
+                
+				$('.filterLink').each(function(){
 
- //console.log($(this).html());
-  
-     if($(this).html().toLowerCase().indexOf(filterSelection().slice(0,3))>-1){
-	    //console.log($(this).html().toLowerCase().indexOf(filterSelection().slice(0,3)));
-		$(this).addClass('activeFilter');
-		//console.log($(this).html());
-		}
-	 else {
-	    $(this).removeClass('activeFilter');
-	    }
+                       if($(this).html().toLowerCase().indexOf(filterSelection().slice(0,3))>-1){
+	    
+		                  $(this).addClass('activeFilter');
+		
+		                }
+	                   
+					   else {
+	                      
+						  $(this).removeClass('activeFilter');
+	                    }
      
-	 });
+	            });
 
   });
 
 //SET FILTER
 var setFilter=function(filter){
-  filterSelection(filter.toString());
+
+           filterSelection(filter.toString());
+  
 }
 
 //SORT THE FOUND TRACKS
 var trackSorter=ko.computed(function(){
 
-  var listToSort=foundTracks();
-  var filterCriterion=filterSelection();
+                var listToSort=foundTracks();
+				
+                var filterCriterion=filterSelection();
   
-  if(filterCriterion&&filterCriterion=='trackName') {
+                if(filterCriterion&&filterCriterion=='trackName') {
   
-  return listToSort.sort(function(a,b){
+                    return listToSort.sort(function(a,b){
          
-        return a.trackName == b.trackName ? 0 : (a.trackName < b.trackName ? -1 : 1);
-    });	  
+                    return a.trackName == b.trackName ? 0 : (a.trackName < b.trackName ? -1 : 1);
+                    
+					});	  
   
-   }
+                }
    
-   if(filterCriterion&&filterCriterion=='artist') {
+                if(filterCriterion&&filterCriterion=='artist') {
   
-  return listToSort.sort(function(a,b){
+                    return listToSort.sort(function(a,b){
          
-        return a.artist == b.artist ? 0 : (a.artist < b.artist ? -1 : 1);
-    });	  
+                    return a.artist == b.artist ? 0 : (a.artist < b.artist ? -1 : 1);
+                    
+					});	  
   
-   }
+                }
    
-   if(filterCriterion&&filterCriterion=='album') {
+                if(filterCriterion&&filterCriterion=='album') {
   
-  return listToSort.sort(function(a,b){
+                    return listToSort.sort(function(a,b){
          
-        return a.album == b.album ? 0 : (a.album < b.album ? -1 : 1);
-    });	  
+                    return a.album == b.album ? 0 : (a.album < b.album ? -1 : 1);
+                    
+					});	  
   
-   }
+                }
 
    
-   if(filterCriterion&&filterCriterion=='duration') {
+                if(filterCriterion&&filterCriterion=='duration') {
   
-  return listToSort.sort(function(a,b){
+                    return listToSort.sort(function(a,b){
          
-        return a.duration == b.duration ? 0 : (a.duration < b.duration ? -1 : 1);
-    });	  
+                    return a.duration == b.duration ? 0 : (a.duration < b.duration ? -1 : 1);
+                    
+					});	  
   
-   }
+                }
 
-});
-
-
+    });
 
 
 
+
+//DISPLAY FOUND TRAKCS BY PAGE
 var mapTracks=function(response,query){
-           {
+           
 			      if(response!=''&&response!=null&&response!=undefined){
-			        searchStatus(true);//hide the gif
-					console.log('found '+response.tracks.total);
-                    searchResults(response.tracks.items);
-					//console.log(searchResults());
-					totalFound(response.tracks.total);
+			        
+					 searchStatus(true);//hide the gif
+					 
+                     searchResults(response.tracks.items);
+					 					
+					 totalFound(response.tracks.total);
 					
 					 
-					if(response.tracks.total>20) {
-					  displayMore(true); //show the "more pages" button
-					  //pageCount(pageCount()+foundTracks().length);
-					  subject=query;
-					 }
-					 else {
-					  displayMore(false);
+					 if(response.tracks.total>20) {
+					  
+					     displayMore(true); //show the "more pages" button
+					  
+					     subject=query;
 					  }
+					 
+					 else {
+					       displayMore(false);
+					  }
+					  
+					  
 					  //map and display this search results page
-					var mappedTracks=$.map(response.tracks.items, function(item) { return new track(item) });
-					foundTracks(mappedTracks);
-					//console.log('response: '+response);
-					//console.log(mappedTracks);
-					positiveResults(true);
+					  
+					 var mappedTracks=$.map(response.tracks.items, function(item) { return new track(item) });
+					
+					   foundTracks(mappedTracks);
+					
+					   positiveResults(true);
 					
 					
-					if(totalFound()==0){
-					  positiveResults(false);
-					  searchMsg("no tracks were found");
-					 }
+					   if(totalFound()==0){
+					   
+					       positiveResults(false);
+						   
+					       searchMsg("no tracks were found");
+					   }
 					
 					}
+					
 				   else {
-				     searchMsg("no tracks were found");
-					 positiveResults(false);
+				     
+					    searchMsg("no tracks were found");
+					    
+						positiveResults(false);
 					 
 				     }
-                  }
+                  
 		  
 		  };
 
 
 
 
-//first search for this criteria (called by viewModel)
+//THE FIRST SEARCH FOR THESE CRITERIA (CALLED BY VIEWmODEL)
+
 var searchTracks=function(query){
-       alert(query);
-	   filterSelection('');
-	   
+       
+	               filterSelection('');
+				   
+	               if($('#searchInput' ).data('ui-autocomplete')){
+				   
+	                $('#searchInput' ).autocomplete("close"); //hide autocomplete menu when search starts
 		 
-        positiveResults(false);//reset
-	    searchStatus(false);//hide the gif
-        searchMsg('');//reset message box
-		displayPrev(false);
+		            }
+					
+					
+                    positiveResults(false);//reset
+	                
+					searchStatus(false);//hide the gif
+                   
+				    searchMsg('');//reset message box
+		           
+				    displayPrev(false);
 		
-		//to property display search status and results, unfold the hidden content
-		if($('.collapse').css('display')=='none') {
-		    $('.collapse').collapse("show");
-		 }
+		           //to properly display search status and results, unfold the hidden content
+		            if($('.collapse').css('display')=='none') {
+		             
+					  $('.collapse').collapse("show");
+					  
+		            }
 		
 		
-          $.ajax({
-               url: 'https://api.spotify.com/v1/search',
-               data: {
-                    q: query,
-                 type: 'track,artist,album'
-                },
-               success: function(response){
-			            mapTracks(response,query);
-				        filterSelection('trackName');
+                   $.ajax({
+                          
+						  url: 'https://api.spotify.com/v1/search',
+                         data: {
+                                q: query,
+                                type: 'track,artist,album'
+                                },
+								
+                       success: function(response){
+			                     
+								 mapTracks(response,query);//if received response, call the displaying function, passing it the data
+				         
+						         filterSelection('trackName'); //start off by setting the filter to track name
 						
-				  },
-				  error:function(){
-				    searchMsg("no tracks were found");
-					positiveResults(false);
-				    }
-             });
+				                },
+								
+				         error:  function(){
+				                 
+								 searchMsg("no tracks were found");
+					             
+								 positiveResults(false);
+				                
+								}
+                    });
           
 		  
 		  
 		  }
 
-//User clicked on "More results"
+//USER CLICKED ON "MORE RESULTS"		  
+
 var displayMoreTracks=function() {
-pageCount(pageCount()+foundTracks().length);
- alert('pageCount: '+pageCount());
-     $.ajax({
-               url: 'https://api.spotify.com/v1/search',
-               data: {
-                    q: subject,
-                 type: 'track,artist,album',
-				 offset:pageCount(),
-				 limit:20
-                },
-				success:function(response){
-				      mapTracks(response,subject);
-					  //control the display of "More" and "prev" buttons
-					  if(pageCount()>=20) { //we can go back in the resuls too
-					  displayPrev(true);					  
-					  }
-					  else{
-					   displayPrev(false);
-					   }
-					   if((pageCount()+20)>totalFound()){
-					     displayMore(false);
-					   }
-				 },
-				 error:function(){
-				    searchMsg("no tracks were found");
-					positiveResults(false);
-				    }
-              });
+                    
+					pageCount(pageCount()+foundTracks().length);
+ 
+                   $.ajax({
+                         
+						 url: 'https://api.spotify.com/v1/search',
+                         
+						 data: {
+                                q: subject,                           
+								type: 'track,artist,album',
+				               offset:pageCount(),
+				               limit:20
+                                },
+								
+				         success:function(response){
+				                 
+								 mapTracks(response,subject); //if received response, call the displaying function, passing it the data
+					  
+					             //control the display of "More" and "prev" buttons
+					             if(pageCount()>=20) { //we can go back in the resuls 
+					                  
+									  displayPrev(true);					  
+					                
+									}
+					             
+								 else{
+					                
+ 									 displayPrev(false);
+					               
+								   }
+					   
+					              if((pageCount()+20)>totalFound()){
+					                   
+									   displayMore(false);// we can go forward in the results
+									   
+					              }
+				        },
+						
+				        error:function(){
+				               
+							   searchMsg("no tracks were found");
+					           
+							   positiveResults(false);
+				        }
+                    });
 
      }		  
-		  
-//User clicked on "Previous results"
+
+	 
+//USER CLICKED ON "PREVIOUS RESULTS"	 
+
 var displayPrevTracks=function() {
-    pageCount(pageCount()-foundTracks().length);
- alert('pageCount: '+pageCount());
-     $.ajax({
-               url: 'https://api.spotify.com/v1/search',
-               data: {
-                    q: subject,
-                 type: 'track,artist,album',
-				 offset:pageCount(),
-				 limit:20
-                },
-				success:function(response){
+                    
+					pageCount(pageCount()-foundTracks().length);
+ 
+                    $.ajax({
+                            url: 'https://api.spotify.com/v1/search',
+                            
+							data: {
+                                   q: subject,
+                                   type: 'track,artist,album',
+				                   offset:pageCount(),
+				                   limit:20
+                                  },
+				            
+							success:function(response){ 
 				
-				      mapTracks(response,subject);
-					  //control the display of "More" and "prev" buttons
-					  if(pageCount()>=20) { //we can go back in the resuls too
-					  displayPrev(true);					  
-					  }
-					  else{
-					   displayPrev(false);
-					   }
-				 },
-				 error:function(){
-				    searchMsg("no tracks were found");
-					positiveResults(false);
-				    }
-              });
+				                    mapTracks(response,subject); //if received response, call the displaying function, passing it the data
+					                
+									//control the display of "More" and "prev" buttons
+					               if(pageCount()>=20) { //we can go back in the resuls 
+					                  
+									  displayPrev(true);
+									  
+					                }
+									
+					                else{
+									
+					                  displayPrev(false);
+					                
+									}
+				                },
+								
+				            error:function(){
+				                  
+								  searchMsg("no tracks were found");
+					              
+								  positiveResults(false);
+				            }
+                    });
 
      }		  		  
-		  
-var autocompleteHelper=function(value) {
-       //alert(value);
-           
-		   var arw=new Array();
-		   
-		   $.ajax({
-               url: 'https://api.spotify.com/v1/search',
-               data: {
-                    q: value,
-                 type: 'track,album,artist',
-				 limit:50				 
-                },
-				success:function(response){
-				 
-				 //console.log(response);
-				 
-				 //found Tracks
-				 var foundTracks=new Array(response.tracks.items);
-				 var foundAlbums=new Array(response.albums.items);
-				 var foundArtists=new Array(response.artists.items);
-				 
-				 
-				 
-				 if(foundTracks&&foundTracks.length>0){
-				 
-				 for(var i=0;i<foundTracks.length;i++){
-				 
-				   
-				    for(var j=0;j<foundTracks[i].length;j++){
-					
-					  var stringToPush=foundTracks[i][j].name.toString();
-					  
-					  if(arw.indexOf(stringToPush)<0){ //only unique values get pushed to the autocomplete list
-					  arw.push(stringToPush);
-					   }
-					   else {
-					     //don't add to the autocomplete
-					      }
-					    }
-				  
-					  }
-				  }
-					 
-					if(foundAlbums&&foundAlbums.length>0) {
-					   for(var i=0;i<foundAlbums.length;i++){
-				 
-				   
-				    for(var j=0;j<foundAlbums[i].length;j++){
-					  
-					  var stringToPush=foundAlbums[i][j].name.toString();
-					  if(arw.indexOf(stringToPush)<0){
-					  arw.push(stringToPush);
-					   }
-					   else {
-					     //don't add to the autocomplete
-					      }
-					  
-					    }
-				  
-					  }
-					
-					
-					 }
-					 
-					 if(foundArtists&&foundArtists.length>0) {
-					   for(var i=0;i<foundArtists.length;i++){
-				 
-				   
-				    for(var j=0;j<foundArtists[i].length;j++){
-					   //console.log(foundArtists[i][j].name);
-					  var stringToPush=foundArtists[i][j].name.toString();
-					  if(arw.indexOf(stringToPush)<0){
-					  arw.push(stringToPush);
-					   }
-					   else {
-					     //don't add to the autocomplete
-					      }
-					  
-					    }
-				  
-					  }
-					
-					
-					 }
-					 
-					 //console.log(arw.length);
-					 if(arw.length>0){
-					 
-					 
-					 
-				     //update autocomplete with search results
-					 $('#searchInput').autocomplete({source:arw,delay:0,select:function(event, ui){searchTracks(ui.item.value);}}); 
-				      
-					}
-				 else {
-				  //no suggestions found
-				 }
-				 
-				 
-				}
-				
-				});
-				
-		
 
+	 
+//ARRAY TO STORE THE AUTOCOMPLETE SUGGESTIONS OBTAINED VIA AJAX	 
+var arw=ko.observableArray();
+
+//OBTAINING AUTOCOMPLETE SUGGESTIONS VIA AJAX (SPOTIFY SEARCH) AND POPULATING THE 'ARW' ARRAY	 
+var autocompleteHelper=function(value) {
+          
+		            $.ajax({
+                             url: 'https://api.spotify.com/v1/search',
+                             data: {
+                                    q: value,
+                                    type: 'track,album,artist', //searching all types of records
+				                    limit:50				 
+                                    },
+				             
+							 success:function(response){
+
+				                    //found Tracks, Albums, and Artists
+				                    var foundTracks=new Array(response.tracks.items);
+				                    var foundAlbums=new Array(response.albums.items);
+				                    var foundArtists=new Array(response.artists.items);
+	 
+	                                //add or don't add each found track name (don't add if already in the array)
+				                    if(foundTracks&&foundTracks.length>0){
+				 
+				                        for(var i=0;i<foundTracks.length;i++){
+			   
+				                          for(var j=0;j<foundTracks[i].length;j++){
+					
+					                         var stringToPush=foundTracks[i][j].name.toString();
+					  
+					                         if(arw.indexOf(stringToPush)<0){ //only unique values get pushed to the autocomplete list
+					                       
+										        arw.push(stringToPush);
+					                    
+										     }
+					                    
+										     else {
+					                           //don't add to the autocomplete
+					                         }
+					                      }
+				  
+					                    }
+				                    }
+					                
+									//add or don't add each found Album name (don't add if already in the array)
+					                    
+									if(foundAlbums&&foundAlbums.length>0) {
+					                    
+										for(var i=0;i<foundAlbums.length;i++){
+		   
+				                          for(var j=0;j<foundAlbums[i].length;j++){
+					  
+					                          var stringToPush=foundAlbums[i][j].name.toString();
+					                         
+											 if(arw.indexOf(stringToPush)<0){
+					                              
+												  arw.push(stringToPush);
+					                         }
+					                        
+											else {
+					                         
+											 //don't add to the autocomplete
+					                        
+											}
+					  
+					                      }
+				  
+					                    }
+				
+					                }
+					 
+					                //add or don't add each found Artist name (don't add if already in the array)
+					                
+									if(foundArtists&&foundArtists.length>0) {
+					                   
+									   for(var i=0;i<foundArtists.length;i++){
+			   
+				                          for(var j=0;j<foundArtists[i].length;j++){
+					   
+					                         var stringToPush=foundArtists[i][j].name.toString();
+					                         
+											 if(arw.indexOf(stringToPush)<0){
+					                              
+												  arw.push(stringToPush);
+					                          }
+					                         
+											 else {
+					                             //don't add to the autocomplete
+					                         }
+					  
+					                       }
+				  
+					                    }
+	
+					                }
+					 
+					                //Now, after adding all the found items, see where we stand with the 'arw' array
+					                 
+									if(arw().length>0){
+				                       //update autocomplete with search results
+					                   $('#searchInput').autocomplete({source:arw(),delay:0,select:function(event, ui){searchTracks(ui.item.value);}}); 			                       
+					                
+									}
+				                    
+									else {
+				                       
+									    //no suggestions found, 'arw' is emplty this time
+				                    }
+				 
+				            }
+				
+				    });
+				
        }
 
-
+//CONTROLS THE DISPLAY OF PLUS OR MINUS SIGN FOR COLLAPSING THE PANELS
 var plusMinusCollapse=function(id){
 
-if($('a[id='+id+'] span').attr("class").indexOf('plus')>1){
-   $('a[id='+id+'] span').removeClass("glyphicon-plus-sign");
-   $('a[id='+id+'] span').addClass("glyphicon-minus-sign");
-   return true; //go on to the mormal function of showing/hiding content
-  }
- else {
-   $('a[id='+id+'] span').removeClass("glyphicon-minus-sign");
-   $('a[id='+id+'] span').addClass("glyphicon-plus-sign");
-   return true;
-  }
+                      if($('a[id='+id+'] span').attr("class").indexOf('plus')>1){
+                      
+					     $('a[id='+id+'] span').removeClass("glyphicon-plus-sign");
+                      
+					     $('a[id='+id+'] span').addClass("glyphicon-minus-sign");
+                      
+					     return true; //go on to the mormal function of showing/hiding content
+                       }
+                      
+					  else {
+                         
+						 $('a[id='+id+'] span').removeClass("glyphicon-minus-sign");
+                         
+						 $('a[id='+id+'] span').addClass("glyphicon-plus-sign");
+                         
+						 return true;
+                        
+						}
 
 }	   
+
+
 
 var selectedTrack=ko.observable();
 
 var setSelectedTrack=function(track){
-selectedTrack(track);
-console.log(selectedTrack());
+                      
+					  selectedTrack(track);
 }
 
   

@@ -9,40 +9,45 @@ return function viewModel() {
  var inputLength=ko.observable(0);
 
 
+ //event handler to fire up autocomplete
+ 
  $('#searchInput').on('keyup',function(){
      
-	 if($(this).val().length>2){
+	                         if($(this).val().length>inputLength()){
 	  
-	      if($(this).val().length>inputLength()){
-	      //alert($(this).val());
+		                        if($('#searchInput').val()!=undefined){
+		                     
+							        spotifySearcher.autocompleteHelper($('#searchInput').val());
 		  
-		 if($('#searchInput').val()!=undefined){
-		 spotifySearcher.autocompleteHelper($('#searchInput').val());
-		 inputLength($(this).val().length);
-	          }
-		  }
-		  else {
-		   //you already searched for this
-		   inputLength($(this).val().length);
-		   }
-		}
-       else {
-	     //do nothing
-	     }
-		}); 
+		                            inputLength($(this).val().length);
+	                           
+							    }
+		                     }
+		  
+		                     else {
+		                           //you already searched for this
+		                           inputLength($(this).val().length);
+		                     }
+	
+		        }); 
   
   
  
  
  
  var search=function(){
-        if($('#searchInput').val()!='') {
-		  searchBoxMsg('');
-		  spotifySearcher.searchTracks($('#searchInput').val());
-		 }
-		 else {
-		    searchBoxMsg('You didn\'t type anything in the search box');
-		    }
+        
+		              if($('#searchInput').val()!='') {
+		                  
+						  searchBoxMsg('');
+		                  
+						  spotifySearcher.searchTracks($('#searchInput').val());
+		              }
+		              
+					  else {
+		    
+			               searchBoxMsg('You didn\'t type anything in the search box');
+		              }
       
 	  }
   
