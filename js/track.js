@@ -8,10 +8,8 @@ return function track(data){
 	this.artist=data.artists[0].name;
     this.duration=Math.floor((data.duration_ms/1000)/60)+':'+Math.round(Math.floor((data.duration_ms/1000-(data.duration_ms/1000)/60))/10);
     
-	//stats
-	this.popularity=data.popularity;
-    this.toPlay=data.external_urls.spotify;
-
+	
+    this.uri=data.uri;
   }
 
 });

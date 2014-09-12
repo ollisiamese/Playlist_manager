@@ -1,1 +1,244 @@
-<p>Playlists here</p>
+<div data-bind="module:'playlists'" class="row" id="playlists-panel">
+<div class="panel panel-success" >
+<div class="panel-heading" id="playlistsPanel">
+<h3 class="text-success">Playlists:&nbsp;
+<span class="badge" data-bind="text:totalCount"></span> &nbsp;
+<span class="btn btn-sm btn-success" data-bind="click:createNewList">Create</span>
+      <span data-bind="module:'spotifySearcher'"><a class="pull-right collapseLink pl" id="playlistCollapse" data-bind="click:function(){plusMinusCollapse('playlistCollapse')}" data-toggle="collapse" data-target="#playlists" >
+               
+				<span class="glyphicon glyphicon-minus-sign"></span>
+      </a>
+</span>
+</h3>
+
+
+</div>
+
+<div id="playlists"  class="collapse in collapsePlaylists">
+
+<div class="panel-body">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+ <div data-bind="if:areLists">
+  
+  <ul data-bind="foreach:allPlaylists" class="playUl list-unstyled" id="parentList">
+    <li class="oneList col-xs-12 col-sm-12" >
+	<div  class="panel panel-warning listContainer" data-bind="click:$parent.makeActive, event:{focus:$parent.makeActive}">
+	 <div class="panel-heading orange">
+	 <a href="" class="regLink" data-bind="click:$parent.deleteList"><span class="glyphicon glyphicon-remove-sign pull-right"></span></a>
+	 <span data-bind="ifnot:editMode">
+	  <a href='' class="listName" data-bind="click:$parent.changeName">
+	  <p data-bind="text:name" class="plName">
+	  </p>
+	  </a>
+	  </span>
+	  <span class="nameInputs" data-bind="if:editMode">
+	     <form data-bind="event:{submit:$parent.saveName}"><input type="text" id="listNameInp" data-bind="event:{blur:$parent.cancelEdit},value:name" autofocus="autofocus"/></form>
+	  </span>
+	  
+	 </div>
+	
+	 
+	 <div class="panel-body">
+	 <iframe src="https://embed.spotify.com/?uri=spotify:trackset:PREFEREDTITLE:3pOqxMamc9sLXHUV4ll0Hu,2GoBwSF9xk6aSt6jGpCxvk,5C6TZz4KFOxtzMkkdQx6MI"
+	 frameborder="0" allowtransparency="true"></iframe>
+	  <div data-bind="if:tracks" class="containmentContainer" >
+	  <button data-bind="">Generate playlist</button>
+	  <ul data-bind="foreach:tracks" class="list-unstyled sortable" class="tracksList">
+	    <li  class="song" data-bind="attr:{id:'s_'+uri}">
+		
+		<table class="individualSong" data-bind="with:$data">
+		<tr class="row">
+		<td class="col-sm-4 col-md-4 col-lg-4">
+		<img data-bind="attr:{src:image}" alt="album cover"/>
+		</td>
+		
+		
+		
+		<td class="middleTd col-sm-6 col-md-6 col-lg-6">
+		<strong><span data-bind="text:trackName"></span> </strong><br/>
+		<span data-bind="text:artist"></span>
+		</td>
+		
+		<td class="col-sm-2 col-md-2 col-lg-2">		
+		<span data-bind="text:duration"></span>
+		</td>
+		
+		</tr>
+		
+		</table>
+		
+		</li>
+		
+	  </ul>
+	  
+	  
+	  <p  class="glyphicon glyphicon-trash hidden "></p>
+	  </div>
+	  
+	  <div data-bind="ifnot:tracks">
+	   <span>Add tracks here<br/> from Search Results.</span>
+	  </div>
+	 </div>
+	 
+	 <div class="panel-footer">
+	 <div><span>Total length:
+	 </span>&nbsp;
+	 <span data-bind="text:length">
+	 </span>
+	 </div>
+	 
+	 <!--ko if:tracks-->
+	 <div class="footerStats">
+	 
+	 <span class="pull-left"><span>Tracks:
+	 </span>&nbsp;
+	 <span data-bind="text:tracks().length" >
+	 </span>
+	 </span>
+	 
+	 <a href="" class="pull-right" data-bind="click:$parent.askRemoveAllSong">
+	   <span title="Remove All Songs" class="glyphicon glyphicon-trash">
+	 
+	   </span>
+	 </a>
+	 
+	 </div>
+	 <!--/ko-->
+	 </div>
+	 </div>
+	</li>
+  </ul>
+ </div>
+
+ 
+ <div data-bind="ifnot:areLists">
+ <span>You don't have any playlists yet.<span>
+ </div>
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!--- MODALS-->
+
+
+
+
+
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p data-bind="with:selectedList">Are you sure you want to delete <strong> <span data-bind="text:name"></span></strong>&nbsp;?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-bind="click:confirmedDelete">Delete</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="duplicateNameModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p >It seems like you may have a playlist named <strong> <span data-bind="text:duplicateName"></span></strong>.<br/>
+		Please rename it to something else before creating a new playlist.
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK!</button>
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="reached10LimitModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p >You have reached the limit of 10 playlists.<br/>
+		You may modify your existing playlists or delete some of them.
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK!</button>
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="duplicatePlaylistModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p >A playlist with this name already exists!
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">OK!</button>
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="emptyNameModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p >Name cannot be empty!
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">OK!</button>
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="removeAllSongs">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p data-bind="with:selectedList">Are you sure you want to delete all the songs on the <strong> <span data-bind="text:name"></span></strong>&nbsp;playlist?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-bind="click:removeAllSongs">Delete</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+</div>

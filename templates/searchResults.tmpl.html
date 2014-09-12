@@ -1,6 +1,24 @@
 <div data-bind="module:'spotifySearcher'" class="row">
+
+<div class="panel panel-info" >
+<div class="panel-heading" id="searchPanel" >
+<h3 class="text-info">Search Results:&nbsp;
+<span data-bind="if:positiveResults"><span class="badge" data-bind="text:totalFound"></span>
+      <a class="pull-right collapseLink" id="searchCollapse" data-bind="click:function(){plusMinusCollapse('searchCollapse')}" data-toggle="collapse" data-target="#search" >
+               
+				<span class="glyphicon glyphicon-minus-sign"></span>
+      </a>
+</span>
+</h3>
+
+
+</div>
+
+
+<div id="search" class="collapse in">
+
+<div class="panel-body">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<h3 class="text-warning">Search Results:&nbsp;<span data-bind="if:positiveResults">(<span data-bind="text:totalFound"></span>)</span></h3>
 <span data-bind="ifnot:searchStatus">
   <img src="img/ajax-loader.gif" alt="loading..."/>
 </span>
@@ -9,22 +27,23 @@
 
 <div data-bind="if:searchStatus" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div data-bind="if:positiveResults">
-<table id="searchResultsTable" class="container">
+
+<table id="searchResultsTable" class="col-md-12">
  <thead class="text-info bold">
   <tr>
   <td>&nbsp;</td>
   <td >
-  <span class="hidden-xs hidden-sm">Track Name:</span>
+  <span class="hidden-xs hidden-sm"><a href="#" class="filterLink " data-bind="click:function(){setFilter('trackName');return false;}">Track Name:</a></span>
   <span class="visible-xs visible-sm">Track:</span>
   </td>
   <td class="hidden-xs hidden-sm">
-  <span class="hidden-xs hidden-sm">Artist:</span>
+  <span class="hidden-xs hidden-sm"><a href="#" class="filterLink" data-bind="click:function(){setFilter('artist');return false;}">Artist:</a></span>
   </td>
   <td class="hidden-xs hidden-sm">
-  <span class="hidden-xs hidden-sm">Album:</span>
+  <span class="hidden-xs hidden-sm"><a href="#" class="filterLink" data-bind="click:function(){setFilter('album');return false;}">Album:</a></span>
   </td>
   <td class="hidden-xs hidden-sm">
-  <span class="hidden-xs hidden-sm">Duration:</span>
+  <span class="hidden-xs hidden-sm"><a href="#" class="filterLink" data-bind="click:function(){setFilter('duration');return false;}">Duration:</a></span>
   </td>
   <td>
   &nbsp;
@@ -32,51 +51,74 @@
   </tr>
  </thead>
  
- <tbody data-bind="foreach:foundTracks">
- <tr >
+ <tbody data-bind="foreach:trackSorter" >
+ <tr data-bind="click:$parent.setSelectedTrack">
  
-   <td>
+   <td class="imgTd ">
    <img data-bind="attr:{src:image}" alt=''/>
    </td>
-   <td>
+   <td class="">
    <p data-bind="text:trackName" class="bolded"></p>
    <span class="visible-xs visible-sm"><p data-bind="text:artist"></p></span>
    </td>
-    <td class="hidden-xs hidden-sm">
+    <td class="hidden-xs hidden-sm ">
 	<span data-bind="text:artist"></span>
 	</td>
-    <td class="hidden-xs hidden-sm">
+    <td class="hidden-xs hidden-sm ">
 	<span data-bind="text:album"></span>
 	</td>
-    <td class="hidden-xs hidden-sm">
+    <td class="hidden-xs hidden-sm ">
 	<span data-bind="text:duration"></span>
 	</td>
-    <td class="addBtn">
-	<button class='btn btn-default'>Add to Playlist</button>
+    <td class="addBtn ">
+	<div data-bind="module:'playlists'">
+	   <div class="btn-group" data-bind="if:allPlaylists">
+	     
+		 <button class='btn btn-default btn-sm dropdown-toggle' data-bind="" data-toggle="dropdown">Add to Playlist <span class="caret"></span></button>
+	         
+			  <!--ko if:areLists-->
+			  <ul  class="dropdown-menu dropDownAdd" role="menu" data-bind="foreach:allPlaylists">
+                 <li ><a href="#" data-bind="text:name,click:$parent.makeDropdownSelection"></a></li>
+			
+              </ul>
+			  <!--/ko-->
+          
+		  <ul class="dropdown-menu dropDownNone" role="menu" data-bind="ifnot:areLists">
+                 <li>&nbsp; You have no playlists.</li>
+				 <li>&nbsp;&nbsp; Please create some first.</li>
+           </ul>		   
+			  
+	    </div>
+		
+		
+	</div>
 	</td>
 	
  </tr>
  </tbody>
 </table>
 
-<div class="pull-right">
+<div>
  <span data-bind="if:displayPrev">
- <button class="btn btn-success" data-bind="click:displayPrevTracks"><span class="glyphicon glyphicon-chevron-left"></span>Previous Page </button>&nbsp; 
+ <button class="btn btn-success pull-left" data-bind="click:displayPrevTracks"><span class="glyphicon glyphicon-chevron-left"></span>Previous Page </button>&nbsp; 
  </span>
 
 
  <span data-bind="if:displayMore">
- <button class="btn btn-success" data-bind="click:displayMoreTracks">More Results <span class="glyphicon glyphicon-chevron-right"></span></button>&nbsp; 
+ <button class="btn btn-success pull-right" data-bind="click:displayMoreTracks">More Results <span class="glyphicon glyphicon-chevron-right"></span></button>&nbsp; 
  </span>
- 
- 
- 
+
  </div>
- 
+
+
  
 </div>
 
 <div data-bind="text:searchMsg" class="text-warning"></div>
 
 </div>
+</div>
+</div> <!-- -->
+</div>
+
 </div>

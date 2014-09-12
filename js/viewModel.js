@@ -2,25 +2,46 @@ define(['knockout','spotifySearcher','jquery','jquery_ui'],function(ko,spotifySe
 return function viewModel() {
  
  
- var searchInput=ko.observable();
+ var searchBoxMsg=ko.observable('');
  
- searchInput.subscribe(function(){ //searches as you are typing
+ var searchOptions=ko.observableArray();
  
-   if(searchInput().length>3){
-       alert('I start the search!');
-       spotifySearcher.searchTracks(searchInput());
-     }
-    else {
-	 spotifySearcher.searchStatus(true); //remove the ajax loading img
-	  }
-    });
+ var inputLength=ko.observable(0);
+
+
+ $('#searchInput').on('keyup',function(){
+     
+	 if($(this).val().length>2){
+	  
+	      if($(this).val().length>inputLength()){
+	      //alert($(this).val());
+		  
+		 if($('#searchInput').val()!=undefined){
+		 spotifySearcher.autocompleteHelper($('#searchInput').val());
+		 inputLength($(this).val().length);
+	          }
+		  }
+		  else {
+		   //you already searched for this
+		   inputLength($(this).val().length);
+		   }
+		}
+       else {
+	     //do nothing
+	     }
+		}); 
+  
+  
+ 
+ 
  
  var search=function(){
-        if(searchInput()!='') {
-		  spotifySearcher.searchTracks(searchInput());
+        if($('#searchInput').val()!='') {
+		  searchBoxMsg('');
+		  spotifySearcher.searchTracks($('#searchInput').val());
 		 }
 		 else {
-		    alert('You didn\'t type anything!');
+		    searchBoxMsg('You didn\'t type anything in the search box');
 		    }
       
 	  }
@@ -34,8 +55,9 @@ return function viewModel() {
   
   return {
        
-	   searchInput:searchInput,
-	   search:search
+	   
+	   search:search,
+	   searchBoxMsg:searchBoxMsg
 	   
 
        }
