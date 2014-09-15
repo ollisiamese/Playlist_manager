@@ -1,3 +1,8 @@
+/*get rid of the orabge border around elements in focus*/
+a:focus, input:focus, div:focus, button:focus, .btn:focus{
+    outline: 0;
+}
+
 a.activeFilter {
 font-weight:700;
 
@@ -24,16 +29,33 @@ top:-3px;
  font-weight:700
  }
 
+.dropDownAdd {
+background-color:#2e2e2e;
+color:#fff;
 
+}
+ 
+.dropDownAdd li, .dropDownAdd li a, .dropdown-menu>li>a {
+max-width:100%;
+word-break:break-all;
+white-space:pre-wrap;
+}
  
 .dropDownAdd li a,.dropDownAdd li a:hover,.dropDownAdd li a:focus{
 text-decoration:none;
-color:black;
+color:#fff;
 
 } 
 
+.dropDownNone{
+background-color:#2e2e2e;
+}
+
 .dropDownNone li {
-color:#2e2e2e
+background-color:#2e2e2e;
+color:#0ce3ac;
+padding:3px;
+
 
 }
 
@@ -54,13 +76,39 @@ padding-right:3px;
 
 }
 
+.individualSong{
+width:99%;
+max-width:99%
+}
+
+.individualSong tr td.firstTd{
+ width:10%;
+ max-width:10%
+
+}
+.individualSong tr td.secondTd{
+ width:80%;
+ max-width:80%
+
+}
+.individualSong tr td.thirdTd{
+ width:5%;
+ max-width:5%
+
+}
+
+.individualSong td{
+text-align:center
+}
+
 .listContainer *{
 opacity:0.8;
 }
 
 .listName {
  color:#fff;
- font-weight:700
+ font-weight:700;
+ overflow:hidden;
  }
 
  .listName:hover, .listName:focus {
@@ -111,6 +159,21 @@ background-color:#787878
 } 
  
  
+ 
+.plName {
+ max-width:100%;
+
+-ms-word-wrap: break-all;
+white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+white-space: -pre-wrap; /* Opera 4-6 */
+white-space: -o-pre-wrap; /* Opera 7 */
+word-wrap: break-word; /* Internet Explorer 5.5+ */
+
+
+white-space:pre-wrap;
+word-break:break-all;
+ }
+ 
  .regLink  {
 color:#FFF;
 }
@@ -124,7 +187,9 @@ color:#fff;
 }
  
 #searchError {
-margin-left:7em
+margin-left:7em;
+display:block;
+clear:both;
 }
 
 .searchGif {
@@ -135,6 +200,10 @@ margin-left:35%
 background-color:#222222;
 
 }
+/***/
+#searchResultsTable {
+max-width:99%;
+} 
  
 #searchResultsTable img{
  width:32px;
@@ -241,6 +310,31 @@ background-color:#912D2D
 
  @media (max-width:320px){/*iPhone4*/
 
+#btn1 {
+margin-top:5px;
+}
+ 
+.listContainer {
+font-size:8pt;
+}
+ 
+#searchResultsTable{
+font-size:8pt;
+
+}
+#searchResultsTable img {
+display:none;
+
+}
+.pagerBtn {
+font-size:6pt;
+display:block;
+}
+
+.panel-heading h3 {
+font-size:10pt;
+}
+ 
 .bolded {
 font-weight:bold;
 font-size:larger
@@ -251,14 +345,30 @@ padding-right:0px;
 margin-right:0px
 }
 
+.dropDownAdd,.dropDownNone {
+left:-30px;
+font-size:smaller
+}
+
+
+
 .imgTd>img {
 margin-left:3px;
 margin-right:3px
 } 
 
+.individualSong img {
+width:24px;
+ height:24px
+}
+
 .navbar-form .btn {
 display:inline;
 
+}
+
+.searchGif {
+margin-left:20%
 }
 
 #searchInput.form-control {
@@ -271,12 +381,17 @@ margin-left:2em
 }
 
 #searchResultsTable img{
- width:32px;
- height:32px
+ width:24px;
+ height:24px
 }
 
+td.diffHeight p,td.diffHeight span {
+line-height:1.2
+}
 
  }
+ 
+ 
  
  
  
@@ -294,10 +409,20 @@ padding-right:0px;
 margin-right:0px
 }
 
+.dropDownAdd,.dropDownNone {
+left:-30px;
+}
+
+
 .imgTd>img {
 margin-left:3px;
 margin-right:3px
 } 
+
+.individualSong img {
+width:24px;
+ height:24px
+}
 
 li.oneList {
  display:inline;
@@ -310,21 +435,34 @@ li.oneList {
 display:inline;
 
 } 
+
+.searchGif {
+margin-left:35%
+}
+
+#searchError {
+margin-left:2em
+}
+
 #searchInput.form-control {
-width:88%;
+width:80%;
 display:inline
 }
 
 #searchResultsTable {
-width:100%
+width:100%;
+font-size:smaller
 }
 
 
 #searchResultsTable img{
- width:64px;
- height:64px
+ width:24px;
+ height:24px
 }
 
+td.diffHeight p,td.diffHeight span {
+line-height:1.2
+}
 
 td.padded {
 padding-right:5%
@@ -339,10 +477,25 @@ padding-right:5%
 font-weight:bold;
 font-size:larger
 }
+
+div.form-group {
+padding-right:0px;
+margin-right:0px
+}
+
+.dropDownAdd,.dropDownNone {
+left:-30px;
+}
+
 .imgTd>img {
 margin-left:3px;
 margin-right:3px
 } 
+
+.individualSong img {
+width:32px;
+ height:32px
+}
  
 li.oneList {
  display:inline;
@@ -351,6 +504,14 @@ li.oneList {
  margin-right:10px 
 } 
  
+.navbar-form .btn {
+display:inline;
+
+}
+
+#searchError {
+margin-left:2em
+}
 
 #searchInput.form-control {
 width:78%;
@@ -362,9 +523,13 @@ width:100%
 }
 
 #searchResultsTable img{
- width:64px;
- height:64px
+ width:32px;
+ height:32px
 } 
+
+td.diffHeight p,td.diffHeight span {
+line-height:1.2
+}
 
 td.padded {
 padding-right:5em
@@ -379,6 +544,10 @@ font-weight:500;
 font-size:100%;
 }
 
+.individualSong img {
+width:64px;
+ height:64px
+}
  
 li.oneList {
  display:inline;
@@ -387,11 +556,18 @@ li.oneList {
  margin-right:10px 
 } 
 
+#searchError {
+margin-left:7em
+}
+
  #searchResultsTable img{
  width:32px;
  height:32px
 } 
- 
+
+ td.diffHeight p,td.diffHeight span {
+line-height:1.42
+}
  
  }
  

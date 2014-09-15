@@ -2,7 +2,7 @@
 
 <!---------------------------------------- PANEL WITH SEARCH RESULTS ------------------------------------>
 <div class="panel panel-info" >
-<div class="panel-heading" id="searchPanel" >
+<div class="panel-heading" id="searchPanel" tabindex="-1" >
 <h3 class="text-info">Search Results:&nbsp;
 <span data-bind="if:positiveResults"><span class="badge" data-bind="text:totalFound"></span>
 
@@ -15,10 +15,11 @@
 </h3>
 
 
+
 </div>
 
 
-<div id="search" class="collapse in">
+<div id="search" class="sres collapse in">
 
 <div class="panel-body">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -60,7 +61,7 @@
    <td class="imgTd padded">
    <img data-bind="attr:{src:image}" alt=''/>
    </td>
-   <td class="padded">
+   <td class="padded diffHeight">
    <p data-bind="text:trackName" class="bolded"></p>
    <span class="visible-xs visible-sm"><p data-bind="text:artist"></p></span>
    </td>
@@ -75,23 +76,39 @@
 	</td>
     <td class="addBtn">
 	<div data-bind="module:'playlists'">
-	   <div class="btn-group" data-bind="if:allPlaylists">
+	   <div class="btn-group" data-bind="if:areLists">
 	     
 		 <button class='btn btn-default btn-sm dropdown-toggle' data-bind="" data-toggle="dropdown">Add to Playlist <span class="caret"></span></button>
 	         
-			  <!--ko if:areLists-->
+			  
 			  <ul  class="dropdown-menu dropDownAdd" role="menu" data-bind="foreach:allPlaylists">
                  <li ><a href="#" data-bind="text:name,click:$parent.makeDropdownSelection"></a></li>
 			
               </ul>
-			  <!--/ko-->
-          
+			 
+		  
+	    </div>
+		
+		
+		<div class="btn-group" data-bind="ifnot:areLists">
+	     
+		 <button class='btn btn-default btn-sm dropdown-toggle' data-bind="" data-toggle="dropdown">Add to Playlist <span class="caret"></span></button>
+      
 		  <ul class="dropdown-menu dropDownNone" role="menu" data-bind="ifnot:areLists">
-                 <li>&nbsp; You have no playlists.</li>
-				 <li>&nbsp;&nbsp; Please create some first.</li>
+                 <li>&nbsp;<span>&nbsp; You have no playlists.</span> <br/>&nbsp;<span>&nbsp; Please create some</span><br/>&nbsp;<span>&nbsp; first.</span></li>
            </ul>		   
 			  
 	    </div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	</div>
@@ -100,16 +117,19 @@
  </tr>
  </tbody>
 </table>
+
 </div>
           <!--Prev and Next page controls --> 
 <div>
+<br/>
+<br/>
  <span data-bind="if:displayPrev">
- <button class="btn btn-success pull-left" data-bind="click:displayPrevTracks"><span class="glyphicon glyphicon-chevron-left"></span>Previous Page </button>&nbsp; 
+ <button class="btn btn-success btn-sm pull-left pagerBtn" data-bind="click:displayPrevTracks"><span class="glyphicon glyphicon-chevron-left"></span>Previous Page </button>&nbsp; 
  </span>
 
 
  <span data-bind="if:displayMore">
- <button class="btn btn-success pull-right" data-bind="click:displayMoreTracks">More Results <span class="glyphicon glyphicon-chevron-right"></span></button>&nbsp; 
+ <button class="btn btn-success btn-sm pull-right pagerBtn" data-bind="click:displayMoreTracks">More Results <span class="glyphicon glyphicon-chevron-right"></span></button>&nbsp; 
  </span>
 
  </div> <!--end of controls -->

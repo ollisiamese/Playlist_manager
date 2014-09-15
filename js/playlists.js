@@ -174,8 +174,13 @@ var sort=function(element){
 																		 
 															         var droppedId=element.sortable("instance").currentItem[0];
 										 
-																     droppedId.remove(); //remove from the DOM
-												 
+																     if(droppedId.remove){
+																	 droppedId.remove(); //remove from the DOM
+												                     }
+																	 else { //IE doesn't support "remove"
+																	 
+																	 droppedId.parentNode.removeChild(droppedId);
+																	  }
 															}
 															
 												          //after 'drop', still goes to 'update' event
@@ -238,6 +243,7 @@ $('#playlists-panel').on('click','.listContainer',function(){
 				}
 				
 });
+
 
 
 //CONFIRMING IF USER WANTS TO REMOVE ALL SONGS IN THE PLAYLIST
@@ -317,11 +323,15 @@ var changeName=function(item) {
  }
 
 
+
 //SAVE THE NAME CHANGE FOR A PLAYLIST
 var saveName=function(){
-
+      
+                
                 if(prevName().toLowerCase()==selectedList().name().toLowerCase()){
-                         
+                         //alert(prevName());
+						// alert(selectedList().name());
+						// alert($('.plName').val());
 						 //do nothing, because we typed in the same name as before
 		                 
 						 selectedList().editMode(false);
@@ -339,7 +349,7 @@ var saveName=function(){
 	            }
 				
 	            if(checkResult==true){
-	 
+	                   
 	               //can now save modified list to storage
 	               storageHandler.updateRecords(allPlaylists());
 	               
@@ -357,13 +367,18 @@ var saveName=function(){
 }
 
 
+
+
 //CANCEL EDITING A PLAYLIST NAME
 var cancelEdit=function() {
                   
-				  if(selectedList().name==0) {
+				  if(selectedList().name().length==0) {
                     //cannot leave the field blank
                     $('#emptyNameModal').modal('show');
-                  
+                    selectedList().name(prevName());
+					selectedList().editMode(true);
+					$('#listNameInp').focus();
+					
 				  }
                   else {
  
@@ -372,7 +387,7 @@ var cancelEdit=function() {
 					selectedList().editMode(false);
 
                     $('#listNameInp').focus();
-
+                      
                    }
 }
 
@@ -383,8 +398,10 @@ var checkExistingList=function(listToCheck){
 					   if(listToCheck.length==0) {
 
                            $('#emptyNameModal').modal('show');
-                           
-						   return false;
+						   selectedList().name(prevName());
+                           selectedList().editMode(true);
+					       $('#listNameInp').focus();
+                            return false;
                         }
                         
 						else {
@@ -616,7 +633,8 @@ return {
 		removeAllSongs:removeAllSongs,
 		askRemoveAllSong:askRemoveAllSong,
 		makeDropdownSelection:makeDropdownSelection,
-		trackToAdd:trackToAdd
+		trackToAdd:trackToAdd,
+		
 		
 		
 		

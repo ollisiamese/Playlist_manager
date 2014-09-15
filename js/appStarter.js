@@ -2,8 +2,8 @@
 requirejs.config({
 
 paths:{
-       //jquery:"//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min",
-	   jquery:"../vendor/jquery/jquery-1.9.1.min",
+       jquery:"//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min",
+	   //jquery:"../vendor/jquery/jquery-1.9.1.min",
 	   //jquery_ui:"//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min",
 	   jquery_ui:"../vendor/jquery-ui-1.11.1/jquery-ui.min",
 	   bootstrap:"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min",
@@ -11,7 +11,8 @@ paths:{
 	   helpers:"../vendor/knockout-amd-helpers.min",
 	   text:"../vendor/text",
 	   domReady:"../vendor/domReady",
-	   viewModel: "../js/viewModel"
+	   viewModel: "../js/viewModel",
+	   punch: "../vendor/punch"
 	   
 	   
 	   
@@ -24,7 +25,7 @@ urlArgs: "bust=" + (new Date()).getTime()
 
 //start the main app logic
 
-requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers','domReady!','jquery', 'jquery_ui', 'bootstrap'], function(ko, viewModel,storageHandler,playlist) {
+requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers','domReady!','jquery','punch', 'jquery_ui', 'bootstrap'], function(ko, viewModel,storageHandler,playlist) {
     
 	
 	ko.amdTemplateEngine.defaultPath = "../templates";
@@ -44,7 +45,7 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 					   album: "Thank You for the Demon",
                        artist:"Mustasch",					   
 					   duration: "6:41",					   
-					   
+					   duration_ms:401000,
 					   uri:"spotify:track:3pOqxMamc9sLXHUV4ll0Hu"
 					   
 					   },
@@ -54,7 +55,7 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 						album: "Pale Rider",
 						artist: "Gamma Ray",
 						duration: "4:26",
-						
+						duration_ms:266000,
 						uri: "spotify:track:2IfqDthoYwdXxZmzyncIKn"
 						
 					   
@@ -64,7 +65,7 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 						artist: "In Flames",
 						duration: "3:21",
 						image: "https://i.scdn.co/image/9f1a567699d83620466e93dd0463b2ec2c5a5852",
-						
+						duration_ms:201000,
 						trackName: "Deliver Us",
 						uri: "spotify:track:5jvSEtiDg8z7nrhgatMJIs"
 						
@@ -83,7 +84,7 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 						album: "The Party Ain't Over 'Til We Say So",
 						artist: "Hardcore Superstar",
 						duration: "3:23",
-						
+						duration_ms:203000,
 						
 						uri: "spotify:track:3jkPBGrvQTAT4Wy4zmoF3R"
 					   
@@ -93,7 +94,7 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 						artist: "Backyard Babies",
 						duration: "3:18",
 						image: "https://i.scdn.co/image/d0521dfaed5add2307b25117e19237431c3ae3b2",
-						
+						duration_ms:198000,
 						
 						trackName: "Brand New Hate",
 						uri: "spotify:track:5IgWGRuPWCLPb3Or2X5FI3"
@@ -104,7 +105,7 @@ requirejs(['knockout','viewModel','storageHandler', 'playlist','text', 'helpers'
 						artist: "Matanzick",
 						duration: "4:28",
 						image: "https://i.scdn.co/image/21dd19361f5353336a88db00aac1e7f58bfad825",
-						
+						duration_ms:268000,
 						toPlay: "https://open.spotify.com/track/0L2KtwJaCdLTZOMFnjJSYu",
 						trackName: "Matar",
 						uri: "spotify:track:0L2KtwJaCdLTZOMFnjJSYu"

@@ -91,7 +91,7 @@ var trackSorter=ko.computed(function(){
   
                     return listToSort.sort(function(a,b){
          
-                    return a.duration == b.duration ? 0 : (a.duration < b.duration ? -1 : 1);
+                    return parseInt(a.durMs) == parseInt(b.durMs) ? 0 : (parseInt(a.durMs) < parseInt(b.durMs) ? -1 : 1);
                     
 					});	  
   
@@ -104,7 +104,7 @@ var trackSorter=ko.computed(function(){
 
 //DISPLAY FOUND TRAKCS BY PAGE
 var mapTracks=function(response,query){
-           
+            
 			      if(response!=''&&response!=null&&response!=undefined){
 			        
 					 searchStatus(true);//hide the gif
@@ -161,7 +161,8 @@ var mapTracks=function(response,query){
 //THE FIRST SEARCH FOR THESE CRITERIA (CALLED BY VIEWmODEL)
 
 var searchTracks=function(query){
-       
+                   $('#searchPanel').focus();
+				   
 	               filterSelection('');
 				   
 	               if($('#searchInput' ).data('ui-autocomplete')){
@@ -170,6 +171,8 @@ var searchTracks=function(query){
 		 
 		            }
 					
+					$('#searchInput').blur();
+					//$('#searchForm').blur();
 					
                     positiveResults(false);//reset
 	                
@@ -182,11 +185,11 @@ var searchTracks=function(query){
 		           //to properly display search status and results, unfold the hidden content
 		            if($('.collapse').css('display')=='none') {
 		             
-					  $('.collapse').collapse("show");
+					  $('.sres').collapse("show");
 					  
 		            }
 		
-		
+		           
                    $.ajax({
                           
 						  url: 'https://api.spotify.com/v1/search',
@@ -221,7 +224,9 @@ var searchTracks=function(query){
 var displayMoreTracks=function() {
                     
 					pageCount(pageCount()+foundTracks().length);
- 
+					
+                    $('#searchPanel').focus();
+					
                    $.ajax({
                          
 						 url: 'https://api.spotify.com/v1/search',
@@ -273,6 +278,8 @@ var displayMoreTracks=function() {
 var displayPrevTracks=function() {
                     
 					pageCount(pageCount()-foundTracks().length);
+					
+					$('#searchPanel').focus();
  
                     $.ajax({
                             url: 'https://api.spotify.com/v1/search',
