@@ -469,10 +469,41 @@ var createNewList=function(){
 
                      var name='New Playlist'+' '+counter();
 
-                     var nameOk=checkExistingList(name.toLowerCase()); //check for duplicate names
                      
-					 if(nameOk) {
-                          
+					 var storedLists=storageHandler.getRecords();
+                            
+							var mappedSongs=$.map(storedLists, function(item) {
+                         
+								        return  new playlist(item.name, item.tracks);
+
+										});
+ 
+                            if(mappedSongs&&mappedSongs.length>0){
+ 
+                                var listStatus;
+                                
+								for(var i=0;i<mappedSongs.length;i++){
+                                 console.log(name+" vs "+mappedSongs[i].name());
+                                   if(name.toLowerCase()==mappedSongs[i].name().toLowerCase()){
+	 
+										listStatus=true;
+										duplicateName(name);
+  
+                          $('#duplicateNameModal').modal("show");
+						            return;
+	 
+	                                }
+	                            
+								else {
+	 
+	                                listStatus=false;
+									
+	                                 
+									 }
+                                }
+                             
+                        if(!listStatus) {
+                          //allow to create
 						  var newList=new playlist(name,'');
                           
 						  allPlaylists.unshift(newList);
@@ -482,15 +513,57 @@ var createNewList=function(){
                           counter(counter()+1);
 						  
 						  selectedList(newList);
-                      }
+						  
+						  $('.plName').each(function(){
+                                   
+								   if($(this).html()==selectedList().name()){
+					  
+					                  $(this).parent().parent().click();
+					                }
+					 
+					           });
+                        }
+
+
+							 
+								
+                          }
+                            
+							//if this is going to be the first list
+							else {
+
+                                //allow to create
+                                  listStatus=false;
+								  var newList=new playlist(name,'');
+                          
+						          allPlaylists.unshift(newList);
+                          
+						          storageHandler.updateRecords(allPlaylists());
  
-                    else {
-                           
-						   duplicateName(name);
-  
-                          $('#duplicateNameModal').modal("show");
-	 
-                    }
+                                  counter(counter()+1);
+						  
+						          selectedList(newList);
+								  
+								  $('.plName').each(function(){
+                                   
+								   if($(this).html()==selectedList().name()){
+					  
+					                  $(this).parent().parent().click();
+					                }
+					 
+					           });
+								  
+                            }
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					
+ 
                     }
 }
 
