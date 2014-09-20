@@ -12,7 +12,7 @@ define(['knockout','jquery'], function(ko) {
     this.artist = data.artists[0].name;
     this.durMs = data.duration_ms;
     
-	var totalSeconds = data.duration_ms / 1000;
+	var totalSeconds = Math.ceil(data.duration_ms / 1000);
 	var wholeMinutes = Math.floor(totalSeconds / 60);
 	var remainingSeconds= totalSeconds - wholeMinutes*60;
     if (Math.ceil(remainingSeconds) > 9) {

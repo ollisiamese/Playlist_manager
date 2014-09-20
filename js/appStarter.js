@@ -30,8 +30,8 @@ var arr1=new Array(
 		trackName: "All My Life", 
 		album: "Thank You for the Demon",
         artist:"Mustasch",					   
-		duration: "6:41",					   
-		duration_ms:401000,
+		duration: "6:59",					   
+		duration_ms:418880,
 		uri:"spotify:track:3pOqxMamc9sLXHUV4ll0Hu"
 		},
 		{
@@ -39,16 +39,16 @@ var arr1=new Array(
 		trackName: "Pale Rider",
 		album: "Pale Rider",
 		artist: "Gamma Ray",
-		duration: "4:26",
-		duration_ms:266000,
+		duration: "4:24",
+		duration_ms:263683,
 		uri: "spotify:track:2IfqDthoYwdXxZmzyncIKn"
 		},
 		{
 		album: "Deliver Us",
 		artist: "In Flames",
-		duration: "3:21",
+		duration: "3:31",
 		image: "https://i.scdn.co/image/9f1a567699d83620466e93dd0463b2ec2c5a5852",
-		duration_ms:201000,
+		duration_ms:210646,
 		trackName: "Deliver Us",
 		uri: "spotify:track:5jvSEtiDg8z7nrhgatMJIs"
 		}
@@ -59,25 +59,25 @@ var arr2=new Array(
 		trackName: "Liberation",
 		album: "The Party Ain't Over 'Til We Say So",
 		artist: "Hardcore Superstar",
-		duration: "3:23",
-		duration_ms:203000,
+		duration: "3:55",
+		duration_ms:234920,
 		uri: "spotify:track:3jkPBGrvQTAT4Wy4zmoF3R"
 		},
 		{
 		album: "Making Enemies Is Good",
 		artist: "Backyard Babies",
-		duration: "3:18",
+		duration: "3:02",
 		image: "https://i.scdn.co/image/d0521dfaed5add2307b25117e19237431c3ae3b2",
-		duration_ms:198000,
+		duration_ms:181426,
 		trackName: "Brand New Hate",
 		uri: "spotify:track:5IgWGRuPWCLPb3Or2X5FI3"
 		},
 		{
 		album: "Scars of Insanity",
 		artist: "Matanzick",
-		duration: "4:28",
+		duration: "4:42",
 		image: "https://i.scdn.co/image/21dd19361f5353336a88db00aac1e7f58bfad825",
-		duration_ms:268000,
+		duration_ms:281470,
 		toPlay: "https://open.spotify.com/track/0L2KtwJaCdLTZOMFnjJSYu",
 		trackName: "Matar",
 		uri: "spotify:track:0L2KtwJaCdLTZOMFnjJSYu"
