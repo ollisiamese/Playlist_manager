@@ -1,4 +1,4 @@
-define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!', 'jquery'], function(ko, playlist, spotifySearcher, storageHandler) {
+define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!', 'jquery'], function(ko, Playlist, spotifySearcher, storageHandler) {
   var totalCount = ko.observable();
   var allPlaylists = ko.observableArray();
   var counter = ko.observable(1);
@@ -43,7 +43,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
   var finalData = storageHandler.getRecords();
 
   var mappedPosts = $.map(finalData, function(item) {
-    return new playlist(item.name, item.tracks, item.length);
+    return new Playlist(item.name, item.tracks, item.length);
   });
 
   allPlaylists(mappedPosts);
@@ -274,7 +274,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       var storedLists = storageHandler.getRecords();
     
       var mappedSongs = $.map(storedLists, function(item) {
-        return new playlist(item.name, item.tracks);
+        return new Playlist(item.name, item.tracks);
       });
     
       if (mappedSongs && mappedSongs.length > 0) {
@@ -284,7 +284,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       
           if (listToCheck.toLowerCase() == mappedSongs[i].name().toLowerCase()) {
             $('#duplicatePlaylistModal').modal('show');
-            return listStatus = false;
+            return (listStatus = false);
         
           } else {
             listStatus = true;
@@ -296,7 +296,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
     
       } else {
         //allow to create
-        return listStatus = true;
+        return (listStatus = true);
       }
     
       }
@@ -322,7 +322,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       var storedLists = storageHandler.getRecords();
     
       var mappedSongs = $.map(storedLists, function(item) {
-        return new playlist(item.name, item.tracks);
+        return new Playlist(item.name, item.tracks);
       });
     
       //if this is not going to be the first playlist
@@ -344,7 +344,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       
         if (!listStatus) {
           //allow to create
-          var newList = new playlist(name, '');
+          var newList = new Playlist(name, '');
           allPlaylists.unshift(newList);
           storageHandler.updateRecords(allPlaylists());
           counter(counter() + 1);
@@ -363,7 +363,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
         //if this is going to be the first list
         //allow to create
         listStatus = false;
-        var newList = new playlist(name, '');
+        var newList = new Playlist(name, '');
         allPlaylists.unshift(newList);
         storageHandler.updateRecords(allPlaylists());
         counter(counter() + 1);

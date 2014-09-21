@@ -1,6 +1,6 @@
 // a Playlist constructor
 define(['knockout','jquery'], function(ko) {
-  return function playlist(name, tracks) {
+  return function Playlist(name, tracks) {
     var self = this;
     self.name = ko.observable(name);
     self.tracks = ko.observableArray();
