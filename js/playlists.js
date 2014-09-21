@@ -117,10 +117,10 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
     
         //create droppable trashcan
         $('.trash').droppable({
-          hoverClass:"ui-state-hover",
+          hoverClass: "ui-state-hover",
       
           //DROP: when user has dropped item into trashcan
-          drop:function(event, ui) {
+          drop: function(event, ui) {
         
             if ($('.trash')) {
               $('.trash').remove();
