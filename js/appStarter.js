@@ -19,7 +19,7 @@ requirejs.config({
 });
 
 //start the main app logic
-requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpers', 'domReady!', 'jquery', 'punch', 'jquery_ui', 'bootstrap'], function (ko, viewModel, storageHandler, playlist) {
+requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpers', 'domReady!', 'jquery', 'punch', 'jquery_ui', 'bootstrap'], function (ko, viewModel, storageHandler, Playlist) {
   ko.amdTemplateEngine.defaultPath = "../templates";
   var vm = new viewModel();
   ko.applyBindings(vm);
@@ -93,8 +93,8 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
     
   );  
     
-  list.push(new playlist('List1', arr1));
-  list.push(new playlist('List2', arr2));
+  list.push(new Playlist('List1', arr1));
+  list.push(new Playlist('List2', arr2));
   //save to localStorage 
   storageHandler.updateRecords(list());  
 });
