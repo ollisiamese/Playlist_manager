@@ -37,24 +37,24 @@ define( ['knockout','jquery'], function(ko) {
   
     //generate a src string for the embedded iframe for "Spotify Button" for multiple tracks
     self.iframeSrc = ko.computed(function() {
-    var buttonTitle = self.name();
-    var source = "https://embed.spotify.com/?uri=spotify:trackset:" + buttonTitle + ":";
+      var buttonTitle = self.name();
+      var source = "https://embed.spotify.com/?uri=spotify:trackset:" + buttonTitle + ":";
     
-    //if there are tracks, we will have a Spotify play button
-    if (self.tracks() && self.tracks() != '' && self.tracks().length > 0) {
+      //if there are tracks, we will have a Spotify play button
+      if (self.tracks() && self.tracks() != '' && self.tracks().length > 0) {
     
-      for (var d = 0; d < self.tracks().length; d++) {
-        var myUri = self.tracks()[d].uri.slice(14);   
-        source = source + myUri + ",";  
-      }
+        for (var d = 0; d < self.tracks().length; d++) {
+          var myUri = self.tracks()[d].uri.slice(14);   
+          source = source + myUri + ",";  
+        }
       
-      var finalSource = source.slice(0, source.length - 1);
-      return finalSource;
+        var finalSource = source.slice(0, source.length - 1);
+        return finalSource;
     
-    } else {
-      //no tracks - no play button!
-      return false;
-    }
+      } else {
+        //no tracks - no play button!
+        return false;
+      }
     });
     
     //a property for setting the name of the playlist via input in the form
