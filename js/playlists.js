@@ -50,7 +50,8 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
 
   //ACTIVATE SORTABLE INTERACTION
   var sort = function(element) {
-    element.sortable({placeholder: "placeholder",                        
+    element.sortable({
+      placeholder: "placeholder",                        
       cursor: "pointer",
       forceHelperSize: true,
       opacity: 0.5,
