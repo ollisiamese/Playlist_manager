@@ -1,4 +1,4 @@
-define(['knockout', 'track', 'jquery'], function(ko, track) {
+define(['knockout', 'track', 'jquery'], function(ko, Track) {
   var searchResults = ko.observableArray();
   var searchStatus = ko.observable(true);
   var positiveResults = ko.observable(false);
@@ -80,7 +80,7 @@ define(['knockout', 'track', 'jquery'], function(ko, track) {
       
       //map and display this search results page
       var mappedTracks = $.map(response.tracks.items, function(item) {
-        return new track(item);
+        return new Track(item);
       });
       
       foundTracks(mappedTracks);

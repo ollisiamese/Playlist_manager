@@ -1,6 +1,6 @@
 // A Track (song) constructor:
 define(['knockout','jquery'], function(ko) {
-  return function track(data){
+  return function Track(data){
     
     if (data.album.images[2]) {
       this.image = data.album.images[2].url;
@@ -18,7 +18,7 @@ define(['knockout','jquery'], function(ko) {
     var remainingSeconds = totalSeconds - wholeMinutes * 60;
     if (Math.ceil(remainingSeconds) > 9) {
       this.duration =
-        wholeMinutes+ ':' +
+        wholeMinutes + ':' +
         Math.ceil(remainingSeconds);
     } else {
       this.duration =
