@@ -4,20 +4,20 @@ define(['jquery', 'knockout'], function(ko) {
     var plainList = new Array();
   
     for (var i = 0; i < list.length; i++) {
-      var tt = new Array;
+      var tracksArray = new Array;
     
       if (list[i].tracks().length > 0) {
         for (var g = 0; g < list[i].tracks().length; g++) {
-          tt.push(list[i].tracks()[g]);
+          tracksArray.push(list[i].tracks()[g]);
         }
       } else {
-        tt = [];
+        tracksArray = [];
       }
     
-      plainList.push({name:list[i].name(), tracks:tt, length:list[i].length()});
+      plainList.push({name: list[i].name(), tracks: tracksArray, length: list[i].length()});
     }
   
-    localStorage.playlists=JSON.stringify(plainList);
+    localStorage.playlists = JSON.stringify(plainList);
   }
  
  
