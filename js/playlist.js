@@ -11,7 +11,7 @@ define(['knockout','jquery'], function(ko) {
       var totalLength = 0;
       
       //if there are tracks in this list, we are going to calculate
-      if (self.tracks() && self.tracks()!= '' && self.tracks() != undefined && self.tracks().length > 0) {
+      if (self.tracks() && self.tracks() != '' && self.tracks() != undefined && self.tracks().length > 0) {
         
         for (var i = 0; i < self.tracks().length; i++) {
           var breakpoint = self.tracks()[i].duration.indexOf(":");
