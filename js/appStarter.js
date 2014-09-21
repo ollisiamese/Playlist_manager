@@ -56,6 +56,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       trackName: "Deliver Us",
       uri: "spotify:track:5jvSEtiDg8z7nrhgatMJIs"
     }
+    
   );
   
   var arr2 = new Array(

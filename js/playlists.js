@@ -26,7 +26,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
     $('.listContainer').each(function() {
       var match = $(this).children('.panel-heading').children('span').children('a').children('p.plName').html();
     
-      if (selectedList() !='' && selectedList() != undefined && match == selectedList().name()) {
+      if (selectedList() != '' && selectedList() != undefined && match == selectedList().name()) {
         $(this).addClass('selectedList');    
     
       } else {
