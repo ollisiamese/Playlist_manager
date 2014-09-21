@@ -207,9 +207,9 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       item.editMode(true);
     
       if (item.name() == undefined||item.name == null) {
-        var pr='';
+        var pr = '';
       } else {
-        var pr=item.name();
+        var pr = item.name();
       }
     
       prevName(pr);
@@ -271,9 +271,9 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       return false;
   
     } else {
-      var storedLists=storageHandler.getRecords();
+      var storedLists = storageHandler.getRecords();
     
-      var mappedSongs=$.map(storedLists, function(item) {
+      var mappedSongs = $.map(storedLists, function(item) {
         return new playlist(item.name, item.tracks);
       });
     
