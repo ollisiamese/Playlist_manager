@@ -11,7 +11,7 @@ define(['knockout', 'track', 'jquery'], function(ko, track) {
   var subject;
   var filterSelection = ko.observable('trackName');  
   //array to store the autocomplete suggestions obtained via ajax  
-  var arw=ko.observableArray();
+  var arw = ko.observableArray();
   var selectedTrack = ko.observable();
   
   filterSelection.subscribe(function() {                
@@ -73,7 +73,7 @@ define(['knockout', 'track', 'jquery'], function(ko, track) {
       if (response.tracks.total > 20) {
         //show the "more pages" button
         displayMore(true); 
-        subject=query;
+        subject = query;
       } else {
         displayMore(false);
       }
@@ -129,7 +129,7 @@ define(['knockout', 'track', 'jquery'], function(ko, track) {
       },                
       success: function(response) {
         //if received response, call the displaying function, passing it the data
-        mapTracks(response,query);
+        mapTracks(response, query);
         //start off by setting the filter to track name
         filterSelection('trackName'); 
       },
@@ -227,7 +227,7 @@ define(['knockout', 'track', 'jquery'], function(ko, track) {
         q: value,
         //searching all types of records
         type: 'track, album, artist', 
-        limit:50         
+        limit: 50         
       },
       
       success: function(response) {
