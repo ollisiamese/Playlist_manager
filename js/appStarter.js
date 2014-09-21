@@ -22,7 +22,7 @@ requirejs.config({
 requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpers', 'domReady!', 'jquery', 'punch', 'jquery_ui', 'bootstrap'], function (ko, viewModel, storageHandler, playlist) {
   ko.amdTemplateEngine.defaultPath = "../templates";
   var vm = new viewModel();
-  ko.applyBindings( vm );
+  ko.applyBindings(vm);
 
   //pre-populate 2 playlists with data 
   var list = ko.observableArray();
