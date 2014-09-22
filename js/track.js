@@ -1,7 +1,6 @@
 // A Track (song) constructor:
 define(['knockout','jquery'], function(ko) {
-  return function Track(data){
-    
+  return function Track(data){    
     if (data.album.images[2]) {
       this.image = data.album.images[2].url;
     } else {

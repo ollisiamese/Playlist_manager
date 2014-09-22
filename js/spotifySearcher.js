@@ -15,14 +15,12 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
   var selectedTrack = ko.observable();
   
   filterSelection.subscribe(function() {                
-    $('.filterLink').each(function() {
-    
+    $('.filterLink').each(function() {    
       if ($(this).html().toLowerCase().indexOf(filterSelection().slice(0, 3)) > -1) {
         $(this).addClass('activeFilter');
       } else {
         $(this).removeClass('activeFilter');
-      }
-      
+      }      
     });
   });
 
@@ -137,8 +135,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
         searchMsg("no tracks were found");
         positiveResults(false);
       }
-    });
-    
+    });    
   }
 
   //USER CLICKED ON "MORE RESULTS"      
@@ -177,8 +174,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
         searchMsg("no tracks were found");
         positiveResults(false);
       }
-    });
-    
+    });    
   }      
    
   //USER CLICKED ON "PREVIOUS RESULTS"   
@@ -213,8 +209,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
         searchMsg("no tracks were found");
         positiveResults(false);
       }
-    });
-    
+    });    
   }            
    
 
@@ -313,8 +308,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 
   
   //CONTROLS THE DISPLAY OF PLUS OR MINUS SIGN FOR COLLAPSING THE PANELS
-  var plusMinusCollapse = function(id) {
-  
+  var plusMinusCollapse = function(id) {  
     if ($('a[id = ' + id + '] span').attr("class").indexOf('plus') > 1) {
       $('a[id = ' + id + '] span').removeClass("glyphicon-plus-sign");
       $('a[id = ' + id + '] span').addClass("glyphicon-minus-sign");
@@ -325,8 +319,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
       $('a[id='+id+'] span').removeClass("glyphicon-minus-sign");
       $('a[id='+id+'] span').addClass("glyphicon-plus-sign");
       return true;
-    }
-    
+    }    
   }     
 
   

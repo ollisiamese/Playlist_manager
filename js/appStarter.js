@@ -1,6 +1,6 @@
 //configure
 requirejs.config({
-  paths:{
+  paths: {
     jquery: "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min",
     //jquery: "../vendor/jquery/jquery-1.9.1.min",
     //jquery_ui: "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min",
@@ -35,8 +35,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       duration: "6:59",             
       duration_ms: 418880,
       uri: "spotify:track:3pOqxMamc9sLXHUV4ll0Hu"
-    },
-    
+    },    
     {
       image: "https://i.scdn.co/image/e99af5be5e7cdc8ecdd838f9c8e0e9a4944b40ba",
       trackName: "Pale Rider",
@@ -45,8 +44,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       duration: "4:24",
       duration_ms: 263683,
       uri: "spotify:track:2IfqDthoYwdXxZmzyncIKn"
-    },
-    
+    },    
     {
       album: "Deliver Us",
       artist: "In Flames",
@@ -55,8 +53,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       duration_ms: 210646,
       trackName: "Deliver Us",
       uri: "spotify:track:5jvSEtiDg8z7nrhgatMJIs"
-    }
-    
+    }    
   );
   
   var arr2 = new Array(
@@ -68,8 +65,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       duration: "3:55",
       duration_ms: 234920,
       uri: "spotify:track:3jkPBGrvQTAT4Wy4zmoF3R"
-    },
-    
+    },    
     {
       album: "Making Enemies Is Good",
       artist: "Backyard Babies",
@@ -78,8 +74,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       duration_ms: 181426,
       trackName: "Brand New Hate",
       uri: "spotify:track:5IgWGRuPWCLPb3Or2X5FI3"
-    },
-    
+    },    
     {
       album: "Scars of Insanity",
       artist: "Matanzick",
@@ -89,8 +84,7 @@ requirejs(['knockout', 'viewModel', 'storageHandler', 'playlist', 'text', 'helpe
       toPlay: "https://open.spotify.com/track/0L2KtwJaCdLTZOMFnjJSYu",
       trackName: "Matar",
       uri: "spotify:track:0L2KtwJaCdLTZOMFnjJSYu"
-    }
-    
+    }    
   );  
     
   list.push(new Playlist('List1', arr1));

@@ -8,16 +8,14 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
   var trackToAdd=ko.observable();
   var selectedList = ko.observable();
 
-  allPlaylists.subscribe(function() {
-  
+  allPlaylists.subscribe(function() {  
     if (allPlaylists().length > 0) {
       areLists(true);
       totalCount(allPlaylists().length);
     } else {
       areLists(false);
       totalCount(0);
-    }
-  
+    }  
   });
   
 
@@ -78,7 +76,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
           for (var b = 0; b < selectedList().tracks().length; b++) {      
             if (curUri == selectedList().tracks()[b].uri) {
               referenceArray[t] = curUri;
-            } else {}    
+            }     
           }
     
         }
@@ -93,7 +91,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
           for (var m = 0; m < selectedList().tracks().length; m ++) {
             if (matchingUri == selectedList().tracks()[m].uri) {
               finalArray[y] = selectedList().tracks()[m];
-            } else {}
+            } 
           }
     
         }
@@ -169,7 +167,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       });
       //initialize the sortable interaction on this playlist
       sort(element); 
-    } else {} 
+    }  
   
   });
 
@@ -178,7 +176,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
   var askRemoveAllSong = function(item) {
     if (selectedList() == item) {
       $('#removeAllSongs').modal('show');
-    } else {}
+    } 
   }
 
   //ACTUALLY REMOVING ALL SONGS FROM THE PLAYLIST
@@ -187,7 +185,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       selectedList().tracks(false);
       $('#removeAllSongs').modal('hide');
       storageHandler.updateRecords(allPlaylists());
-    } else {}
+    } 
   }
 
   //MAKE A PLAYLIST ACTIVE
@@ -215,14 +213,12 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
       prevName(pr);
       $('#listNameInp').focus();
       //(clicked a link)
-      return false; 
-  
-    } else { }
+      return false;   
+    } 
   }
 
   //SAVE THE NAME CHANGE FOR A PLAYLIST
   var saveName = function() {
-
     if (prevName().toLowerCase() == selectedList().name().toLowerCase()) {
       //do nothing, because we typed in the same name as before
       selectedList().editMode(false);
@@ -241,8 +237,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
     } else {
       //stay in edit mode until problem is fixed
       selectedList().editMode(true);
-    }
-  
+    }  
   }
 
   //CANCEL EDITING A PLAYLIST NAME
@@ -261,8 +256,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
   }
 
   //CHECK IF THE ENTERED PLAYLIST NAME DOESN'T ALREADY EXIST (DUPLICATES)
-  var checkExistingList = function(listToCheck) {
-  
+  var checkExistingList = function(listToCheck) { 
     if (listToCheck.length == 0) {
       $('#emptyNameModal').modal('show');
       selectedList().name(prevName());
@@ -299,13 +293,11 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
         return (listStatus = true);
       }
     
-      }
-    
+      }    
   }
 
   //CREATE NEW PLAYLIST
-  var createNewList = function() {
-  
+  var createNewList = function() {  
     //you can have a limit of 10 playlists only
     if (allPlaylists().length == 10) {
       $('#reached10LimitModal').modal('show');
@@ -378,8 +370,7 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
         });
       
       }           
-    }
-  
+    }  
   }
 
 
@@ -399,9 +390,8 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
         allPlaylists.remove(allPlaylists()[j]);
         storageHandler.updateRecords(allPlaylists());
         selectedList('');
-      } else {}
-    }
-  
+      } 
+    }  
   }
 
 

@@ -5,8 +5,7 @@ define(['knockout', 'spotifySearcher', 'jquery', 'jquery_ui'], function(ko, spot
     var inputLength = ko.observable(0);
    
     //event handler to fire up autocomplete
-    $('#searchInput').on('keyup', function() {
-    
+    $('#searchInput').on('keyup', function() {    
       if ($(this).val().length > inputLength()) {      
         if ($('#searchInput').val() != undefined) {
           spotifySearcher.autocompleteHelper($('#searchInput').val());
@@ -16,8 +15,7 @@ define(['knockout', 'spotifySearcher', 'jquery', 'jquery_ui'], function(ko, spot
       } else {
         //you already searched for this
         inputLength($(this).val().length);
-      }
-      
+      }      
     }); 
  
     var search = function() {
