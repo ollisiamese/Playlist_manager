@@ -1,5 +1,7 @@
 // a Playlist constructor
 define(['knockout','jquery'], function(ko) {
+  'use strict';
+  
   return function Playlist(name, tracks) {
     var self = this;
     self.name = ko.observable(name);
@@ -11,8 +13,7 @@ define(['knockout','jquery'], function(ko) {
       var totalLength = 0;
       
       //if there are tracks in this list, we are going to calculate
-      if (self.tracks() && self.tracks() != '' && self.tracks() != undefined && self.tracks().length > 0) {
-        
+      if (self.tracks() && self.tracks() != '' && self.tracks() != undefined && self.tracks().length > 0) {       
         for (var i = 0; i < self.tracks().length; i++) {
           var breakpoint = self.tracks()[i].duration.indexOf(":");
           var mins = parseInt(self.tracks()[i].duration.slice(0, breakpoint), 10);
@@ -27,8 +28,7 @@ define(['knockout','jquery'], function(ko) {
           return Math.floor(totalLength / 60) + " : 0" + Math.round(totalLength - Math.floor(totalLength / 60) * 60);
         }
       
-        return totalDur;
-      
+        return totalDur;      
       } else{
         //no tracks in this list, length=0     
         return 0;
@@ -41,16 +41,14 @@ define(['knockout','jquery'], function(ko) {
       var source = "https://embed.spotify.com/?uri=spotify:trackset:" + buttonTitle + ":";
     
       //if there are tracks, we will have a Spotify play button
-      if (self.tracks() && self.tracks() != '' && self.tracks().length > 0) {
-    
+      if (self.tracks() && self.tracks() != '' && self.tracks().length > 0) {    
         for (var d = 0; d < self.tracks().length; d++) {
           var myUri = self.tracks()[d].uri.slice(14);   
           source = source + myUri + ",";  
         }
       
         var finalSource = source.slice(0, source.length - 1);
-        return finalSource;
-    
+        return finalSource;    
       } else {
         //no tracks - no play button!
         return false;

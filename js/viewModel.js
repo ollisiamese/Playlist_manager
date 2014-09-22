@@ -1,4 +1,6 @@
 define(['knockout', 'spotifySearcher', 'jquery', 'jquery_ui'], function(ko, spotifySearcher) {
+  'use strict';
+  
   return function viewModel() {
     var searchBoxMsg = ko.observable('');
     var searchOptions = ko.observableArray();
@@ -10,8 +12,7 @@ define(['knockout', 'spotifySearcher', 'jquery', 'jquery_ui'], function(ko, spot
         if ($('#searchInput').val() != undefined) {
           spotifySearcher.autocompleteHelper($('#searchInput').val());
           inputLength($(this).val().length);
-        }
-      
+        }      
       } else {
         //you already searched for this
         inputLength($(this).val().length);

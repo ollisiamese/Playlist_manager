@@ -1,4 +1,6 @@
 define(['knockout', 'track', 'jquery'], function(ko, Track) {
+  'use strict';
+  
   var searchResults = ko.observableArray();
   var searchStatus = ko.observable(true);
   var positiveResults = ko.observable(false);
@@ -10,6 +12,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
   var pageCount = ko.observable(0);
   var subject;
   var filterSelection = ko.observable('trackName');  
+  
   //array to store the autocomplete suggestions obtained via ajax  
   var arw = ko.observableArray();
   var selectedTrack = ko.observable();
@@ -56,8 +59,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
       return listToSort.sort(function(a, b) {
         return parseInt(a.durMs, 10) == parseInt(b.durMs, 10) ? 0 : (parseInt(a.durMs, 10) < parseInt(b.durMs, 10) ? -1 : 1);
       });    
-    }
-    
+    }    
   });
 
   //DISPLAY FOUND TRAKCS BY PAGE
@@ -87,8 +89,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
       if (totalFound() == 0) {
         positiveResults(false);
         searchMsg("no tracks were found");
-      }
-      
+      }      
     } else {
       searchMsg("no tracks were found");
       positiveResults(false);
@@ -106,10 +107,13 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
     }
     
     $('#searchInput').blur();
+    
     //reset
     positiveResults(false);
+    
     //hide the gif
     searchStatus(false);
+    
     //reset message box
     searchMsg('');
     displayPrev(false);
@@ -128,6 +132,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
       success: function(response) {
         //if received response, call the displaying function, passing it the data
         mapTracks(response, query);
+        
         //start off by setting the filter to track name
         filterSelection('trackName'); 
       },
@@ -150,8 +155,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
         type: 'track,artist,album',
         offset: pageCount(),
         limit: 20
-      },
-      
+      },     
       success: function(response) {
         //if received response, call the displaying function, passing it the data
         mapTracks(response, subject); 
@@ -168,8 +172,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
           // we can go forward in the results
           displayMore(false);
         }
-      },
-      
+      },     
       error: function() {
         searchMsg("no tracks were found");
         positiveResults(false);
@@ -189,8 +192,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
         type: 'track,artist,album',
         offset: pageCount(),
         limit: 20
-      },
-      
+      },      
       success: function(response) {
         //if received response, call the displaying function, passing it the data      
         mapTracks(response, subject); 
@@ -201,10 +203,8 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
           displayPrev(true);
         } else {
           displayPrev(false);
-        }
-        
-      },
-      
+        }        
+      },      
       error: function() {
         searchMsg("no tracks were found");
         positiveResults(false);
@@ -220,22 +220,20 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
       url: 'https://api.spotify.com/v1/search',
       data: {
         q: value,
+        
         //searching all types of records
-        type: 'track, album, artist', 
+        type: 'track,album,artist', 
         limit: 50         
-      },
-      
+      },     
       success: function(response) {
         //found Tracks, Albums, and Artists
-        var foundTracks = new Array(response.tracks.items);
-        var foundAlbums = new Array(response.albums.items);
-        var foundArtists = new Array(response.artists.items);
+        var foundTracks = [(response.tracks.items)];
+        var foundAlbums = [(response.albums.items)];
+        var foundArtists = [(response.artists.items)];
         
         //add or don't add each found track name (don't add if already in the array)
-        if (foundTracks && foundTracks.length > 0) {
-          
-          for (var i = 0; i < foundTracks.length; i++) {
-            
+        if (foundTracks && foundTracks.length > 0) {         
+          for (var i = 0; i < foundTracks.length; i++) {           
             for (var j = 0; j < foundTracks[i].length; j++) {
               var stringToPush = foundTracks[i][j].name.toString();
               
@@ -244,19 +242,14 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
                 arw.push(stringToPush);
               } else {
                 //don't add to the autocomplete
-              }
-              
-            }
-            
-          }
-          
+              }              
+            }            
+          }          
         }
         
         //add or don't add each found Album name (don't add if already in the array)
-        if (foundAlbums && foundAlbums.length > 0) {
-          
-          for (var i = 0; i < foundAlbums.length; i++) {
-            
+        if (foundAlbums && foundAlbums.length > 0) {          
+          for (var i = 0; i < foundAlbums.length; i++) {            
             for (var j = 0; j < foundAlbums[i].length; j++) {
               var stringToPush = foundAlbums[i][j].name.toString();
               
@@ -264,18 +257,14 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
                 arw.push(stringToPush);
               } else {
                 //don't add to the autocomplete
-              }
-              
+              }              
             }
-          }
-          
+          }          
         }
         
         //add or don't add each found Artist name (don't add if already in the array)
-        if (foundArtists && foundArtists.length > 0) {
-          
-          for (var i = 0; i < foundArtists.length; i++) {
-            
+        if (foundArtists && foundArtists.length > 0) {          
+          for (var i = 0; i < foundArtists.length; i++) {            
             for (var j = 0; j < foundArtists[i].length; j++) {
               var stringToPush = foundArtists[i][j].name.toString();
               
@@ -283,11 +272,9 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
                 arw.push(stringToPush);
               } else {
                 //don't add to the autocomplete
-              }
-              
+              }              
             }
-          }
-          
+          }         
         }
         
         //Now, after adding all the found items, see where we stand with the 'arw' array
@@ -295,14 +282,11 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
           //update autocomplete with search results
           $('#searchInput').autocomplete({source:arw(), delay: 0, select: function(event, ui) {
             searchTracks(ui.item.value);
-          }});  
-          
+          }});            
         } else {
           //no suggestions found, 'arw' is empty this time
-        }
-      //end of success function
-      }
-      
+        }      
+      }      
     });
   }
 
@@ -312,9 +296,9 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
     if ($('a[id = ' + id + '] span').attr("class").indexOf('plus') > 1) {
       $('a[id = ' + id + '] span').removeClass("glyphicon-plus-sign");
       $('a[id = ' + id + '] span').addClass("glyphicon-minus-sign");
+      
       //go on to the mormal function of showing/hiding content
-      return true; 
-    
+      return true;     
     } else {
       $('a[id='+id+'] span').removeClass("glyphicon-minus-sign");
       $('a[id='+id+'] span').addClass("glyphicon-plus-sign");
