@@ -16,4 +16,4 @@ Search field has autocomplete feature.
 
 App was made using jQuery, jQuery UI, Knockout js, and Require js.
 
-Demo: <a href="http://www.ogeinitz.com/playlist_manager/">Playlist Manager</a>
+Demo: <a href="http://www.ogeinitz.com/playlist_manager/" target='_blank'>Playlist Manager</a>
