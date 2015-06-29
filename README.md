@@ -14,6 +14,6 @@ Within Search Results, user can sort the tracks by clicking on the appropriate h
 A track is added to a selected playlist from the Search Results' dropdown menu. 
 Search field has autocomplete feature. 
 
-App was made using jQuery, jQuery UI, Knockout js, and Require js.
+App was made using jQuery, jQuery UI, KnockoutJS, and RequireJS.
 
 Demo: <a href="http://www.ogeinitz.com/playlist_manager/" target='_blank'>Playlist Manager</a>
