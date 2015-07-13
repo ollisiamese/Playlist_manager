@@ -127,7 +127,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 			url: 'https://api.spotify.com/v1/search',
 			data: {
 				q	: query,
-				type: 'track,artist,album'
+				type	: 'track,artist,album'
 			},                
 			success: function(response) {
 				//if received response, call the displaying function, passing it the data
@@ -151,7 +151,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 		$.ajax({
 			url: 'https://api.spotify.com/v1/search',
 			data: {
-				q		: subject,                           
+				q	: subject,                           
 				type	: 'track,artist,album',
 				offset	: pageCount(),
 				limit	: 20
@@ -188,7 +188,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 		$.ajax({
 			url: 'https://api.spotify.com/v1/search',
 			data: {
-				q		: subject,
+				q	: subject,
 				type	: 'track,artist,album',
 				offset	: pageCount(),
 				limit	: 20
@@ -219,7 +219,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 		$.ajax({
 			url: 'https://api.spotify.com/v1/search',
 			data: {
-				q		: value,
+				q	: value,
 
 				//searching all types of records
 				type	: 'track,album,artist', 
