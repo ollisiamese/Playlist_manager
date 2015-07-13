@@ -29,7 +29,7 @@ define(['jquery', 'knockout'], function(ko) {
 
 	return {
 		updateRecords	: updateRecords,
-		getRecords		: getRecords
+		getRecords	: getRecords
 	};
   
 });
