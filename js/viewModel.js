@@ -30,7 +30,7 @@ define(['knockout', 'spotifySearcher', 'jquery', 'jquery_ui'], function(ko, spot
 
 		return {
 			search		: search,
-			searchBoxMsg: searchBoxMsg
+			searchBoxMsg	: searchBoxMsg
 		};
 	}
 });
