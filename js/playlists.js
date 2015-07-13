@@ -422,22 +422,22 @@ define(['knockout', 'playlist', 'spotifySearcher', 'storageHandler', 'domReady!'
 	};
 
 	return {
-	totalCount			: totalCount,
-	allPlaylists			: allPlaylists,
-	areLists			: areLists,
-	saveName			: saveName,
-	changeName			: changeName,
-	cancelEdit			: cancelEdit,
-	createNewList			: createNewList,
-	deleteList			: deleteList,
-	confirmedDelete			: confirmedDelete,
-	selectedList			: selectedList,    
-	duplicateName			: duplicateName,    
-	makeActive			: makeActive,    
-	removeAllSongs			: removeAllSongs,
-	askRemoveAllSong		: askRemoveAllSong,
-	makeDropdownSelection		: makeDropdownSelection,
-	trackToAdd			: trackToAdd    
+		totalCount			: totalCount,
+		allPlaylists			: allPlaylists,
+		areLists			: areLists,
+		saveName			: saveName,
+		changeName			: changeName,
+		cancelEdit			: cancelEdit,
+		createNewList			: createNewList,
+		deleteList			: deleteList,
+		confirmedDelete			: confirmedDelete,
+		selectedList			: selectedList,    
+		duplicateName			: duplicateName,    
+		makeActive			: makeActive,    
+		removeAllSongs			: removeAllSongs,
+		askRemoveAllSong		: askRemoveAllSong,
+		makeDropdownSelection		: makeDropdownSelection,
+		trackToAdd			: trackToAdd    
 	};
 
 });
