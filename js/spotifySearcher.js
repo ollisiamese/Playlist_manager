@@ -30,7 +30,7 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 	//SET FILTER
 	var setFilter = function(filter) {
 		filterSelection(filter.toString()); 
-	}
+	};
 
 	//SORT THE FOUND TRACKS
 	var trackSorter = ko.computed(function() {
@@ -313,17 +313,17 @@ define(['knockout', 'track', 'jquery'], function(ko, Track) {
 	return {
 		searchTracks		: searchTracks,
 		searchStatus		: searchStatus,
-		searchMsg			: searchMsg,
-		totalFound			: totalFound,
-		displayMore			: displayMore,
-		displayPrev			: displayPrev,
+		searchMsg		: searchMsg,
+		totalFound		: totalFound,
+		displayMore		: displayMore,
+		displayPrev		: displayPrev,
 		positiveResults		: positiveResults,
-		foundTracks			: foundTracks,
+		foundTracks		: foundTracks,
 		displayMoreTracks	: displayMoreTracks,
 		displayPrevTracks	: displayPrevTracks,
 		autocompleteHelper	: autocompleteHelper,
-		trackSorter			: trackSorter,
-		setFilter			: setFilter,
+		trackSorter		: trackSorter,
+		setFilter		: setFilter,
 		plusMinusCollapse	: plusMinusCollapse,
 		selectedTrack		: selectedTrack,
 		setSelectedTrack	: setSelectedTrack
