@@ -22,26 +22,25 @@
   <body>
 	<div id="mainContainer">
 		<nav class="navbar navbar-default" role="navigation">
-		   <div class="container">
+			<div class="container">
 			    <div class="navbar-header">
 					<span class="navbar-brand" href="">
-						   <span>Playlist Manager</span>
+						<span>Playlist Manager</span>
 					</span>
-					  
+				 
 					<form class="navbar-form navbar-left" id="searchForm" role="search">
 				        
 					    <div class="form-group">
-						    	
+						  
 							<input id="searchInput" type="text"  class="form-control" placeholder="Search">
-							       
+							
 							<button type="submit" id="btn1" data-bind="click:search" class="btn btn-default">Go</button>
-						
 						</div>
 				    </form> 
 					  
 					<span data-bind="text:searchBoxMsg" id="searchError" class="text-warning"></span>
 				</div>
-		   </div>
+			</div>
 		</nav>
 	  
 		<div class="container-fluid">
@@ -49,7 +48,7 @@
 			<div class="container">
 				
 				<div data-bind="template:'searchResults'"></div>
-				  
+				
 				<div data-bind="template:'playlists'"></div>
 			</div>
 		</div>
